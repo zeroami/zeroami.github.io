@@ -88,15 +88,15 @@ h1 {
 }
 
 .name-gif {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: 2px solid var(--primary);
     transition: transform 0.4s ease;
 }
 
 .name-gif:hover {
-    transform: scale(3.0);
+    transform: scale(1.2);
 }
 
 @keyframes slideIn {
