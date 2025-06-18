@@ -88,8 +88,8 @@ h1 {
 }
 
 .name-gif {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 2px solid var(--primary);
     transition: transform 0.4s ease;
