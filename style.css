@@ -96,7 +96,7 @@ h1 {
 }
 
 .name-gif:hover {
-    transform: scale(1.2);
+    transform: scale(2);
 }
 
 @keyframes slideIn {
