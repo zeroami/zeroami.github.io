@@ -281,13 +281,19 @@ h1 {
     margin: 2.5rem 0;
 }
 .quote span.typing {
-    display: inline-block;
+    display: block;
+    width: 0;
+    max-width: 100%;
     overflow: hidden;
-    /* Permite que el texto salte a línea si es necesario */
     white-space: pre-wrap;
     word-wrap: break-word;
     border-right: 2px solid var(--primary);
-    animation: typing 5s steps(60) forwards, blink-caret .75s step-end infinite;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: .5rem;
+    animation:
+      typing 4s steps(80) forwards,
+      blink-caret .75s step-end infinite;
 }
 @keyframes typing {
     from { width: 0; }
