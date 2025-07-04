@@ -100,19 +100,21 @@ h1 {
     100% { background-position:   0% 50%; }
 }
 
-/* GIF Float */
+/* GIF Bounce */
 .name-gif {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     border: 2px solid var(--primary);
-    animation: float 6s ease-in-out infinite;
+    animation: bounce 4s ease-in-out infinite;
     transition: transform 0.4s ease;
 }
 
-@keyframes float {
+@keyframes bounce {
     0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-8px); }
+    25%       { transform: translateY(-6px); }
+    50%       { transform: translateY(-12px); }
+    75%       { transform: translateY(-6px); }
 }
 
 .name-gif:hover {
@@ -226,6 +228,4 @@ h1 {
 }
 
 .timeline-item::before {
-    content: '';
-    position: absolute;
-    left
+    content: ''; ```}]}
