@@ -1,4 +1,4 @@
-:root {
+ :root {
     --primary: #3b82f6;
     --secondary: #a855f7;
     --dark: #1e293b;
@@ -225,7 +225,7 @@ h1 {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
 }
-.skill-category {
+.quottegory {
     background: rgba(30,41,59,0.7);
     border-radius: 15px;
     padding: 2rem;
@@ -269,58 +269,46 @@ h1 {
     transform: translateX(3px);
 }
 
-/* Typing Quote */
-.quote {
-    font-family: 'Roboto Mono', monospace;
-    background: rgba(30,41,59,0.9);
-    padding: 2.5rem;
-    border-radius: 15px;
-    border-left: 6px solid var(--primary);
-    box-shadow: 0 0 15px rgba(59,130,246,0.3);
-    overflow: hidden;
-    margin: 2.5rem 0;
-    position: relative;
-}
 .quote span.typing {
-    display: inline-block;
-    white-space: pre-wrap;
-    overflow: hidden;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    width: 0ch;
-    animation: typing 4s steps(80,end) forwards;
+  display: inline-block;
+  white-space: pre-wrap;      /* Para respetar saltos de línea */
+  overflow: hidden;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  /* Anima de 0 hasta N caracteres, y steps(N) asegura 1 paso = 1 letra */
+  animation: typing 4s steps(70, end) forwards; 
 }
+
+/* Ajusta “70ch” al número de caracteres de tu frase. */
 @keyframes typing {
-    from { width: 0ch; }
-    to   { width: 80ch; }
+  from { width: 0ch; }
+  to   { width: 70ch; }
 }
+
+/* Cursor que parpadea */
 .quote span.typing::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 2px;
-    height: 1.6em;
-    background: var(--primary);
-    animation: blink-caret .75s step-end infinite;
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1.6em;
+  background: var(--primary);
+  margin-left: 2px;
+  vertical-align: bottom;
+  animation: blink-caret .75s step-end infinite;
 }
+
 @keyframes blink-caret {
-    0%,100% { opacity: 0; }
-    50%     { opacity: 1; }
+  0%,100% { opacity: 0; }
+  50%     { opacity: 1; }
 }
-.quote span.author {
-    display: block;
-    opacity: 0;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    margin-top: .5rem;
-    animation: fadeInAuthor .6s ease forwards;
-    animation-delay: 4s;
-}
+
+
 @keyframes fadeInAuthor {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
 
 /* Roadmap */
 .roadmap-container {
@@ -442,4 +430,73 @@ h1 {
     background: rgba(59,130,246,0.3);
     color: var(--primary);
     border-radius: 50px;
-    text-decoration
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.project-link:hover {
+    background: rgba(59,130,246,0.6);
+    transform: scale(1.05);
+}
+
+/* Contact Methods */
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+.contact-card {
+    background: rgba(30,41,59,0.7);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.4s ease, background 0.4s ease;
+}
+.contact-card:hover {
+    transform: translateY(-10px);
+    background: rgba(30,41,59,0.9);
+    box-shadow: 0 8px 25px rgba(59,130,246,0.3);
+}
+.contact-card i {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+.contact-card:hover i {
+    transform: translateY(-5px);
+}
+.contact-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+.contact-info {
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+.contact-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.contact-link:hover {
+    color: var(--secondary);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-content, .projects-grid, .skills-container, .contact-methods {
+        grid-template-columns: 1fr;
+    }
+    .roadmap { min-width: unset; flex-direction: column; }
+}
