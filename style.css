@@ -1,4 +1,4 @@
- :root {
+:root {
     --primary: #3b82f6;
     --secondary: #a855f7;
     --dark: #1e293b;
@@ -225,7 +225,7 @@ h1 {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
 }
-.quottegory {
+.skill-category {
     background: rgba(30,41,59,0.7);
     border-radius: 15px;
     padding: 2rem;
@@ -269,68 +269,32 @@ h1 {
     transform: translateX(3px);
 }
 
+/* Typing effect */
 .quote {
-  position: relative;
-  font-family: 'Roboto Mono', monospace;
-  background: rgba(30,41,59,0.9);
-  padding: 2.5rem;
-  border-radius: 15px;
-  border-left: 6px solid var(--primary);
-  box-shadow: 0 0 15px rgba(59,130,246,0.3);
-  overflow: hidden; /* oculta lo que "no se ha escrito" */
-  margin: 2.5rem 0;
+    font-family: 'Roboto Mono', monospace;
+    background: rgba(30,41,59,0.9);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border-left: 6px solid var(--primary);
+    box-shadow: 0 0 15px rgba(59,130,246,0.3);
+    overflow: hidden;
+    margin: 2.5rem 0;
 }
-
-/* el texto que se teclea */
 .quote span.typing {
-  display: inline-block;
-  width: 0ch;                /* ⭐ ancho inicial oculto */
-  white-space: pre-wrap;     /* respeta saltos de línea */
-  word-break: break-word;    /* permite partir palabras largas */
-  overflow: hidden;          /* oculta lo que excede el width */
-  font-size: 1.3rem;
-  line-height: 1.6;
-  animation: typing 4s steps(80) forwards; /* 80 ≈ número de caracteres */
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--primary);
+    animation: typing 5s steps(60) forwards, blink-caret .75s step-end infinite;
 }
-
-/* cursor parpadeante */
-.quote span.typing::after {
-  content: '';
-  display: inline-block;
-  width: 2px;
-  height: 1.6em;
-  background: var(--primary);
-  margin-left: 2px;
-  vertical-align: bottom;
-  animation: blink-caret .75s step-end infinite;
-}
-
 @keyframes typing {
-  from { width: 0ch; }
-  to   { width: 80ch; } /* mismo valor que en steps() */
+    from { width: 0; }
+    to { width: 100%; }
 }
-
 @keyframes blink-caret {
-  0%,100% { opacity: 0; }
-  50%     { opacity: 1; }
+    0%,100% { border-color: transparent; }
+    50% { border-color: var(--primary); }
 }
-
-/* autor tras el texto */
-.quote span.author {
-  display: block;
-  opacity: 0;
-  margin-top: 0.5rem;
-  font-size: 1.3rem;
-  line-height: 1.6;
-  animation: fadeInAuthor 1s ease forwards;
-  animation-delay: 4s;
-}
-@keyframes fadeInAuthor {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-
 
 /* Roadmap */
 .roadmap-container {
