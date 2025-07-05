@@ -280,46 +280,71 @@ h1 {
     margin: 2.5rem 0;
 }
 
+
+.quote {
+  font-family: 'Roboto Mono', monospace;
+  background: rgba(30,41,59,0.9);
+  padding: 2.5rem;
+  border-radius: 15px;
+  border-left: 6px solid var(--primary);
+  box-shadow: 0 0 15px rgba(59,130,246,0.3);
+  overflow: hidden;
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+/* span que “teclea” */
 .quote span.typing {
-    display: block;               /* Bloque para poder envolver en varias líneas */
-    width: 0;                     /* Parte de ancho 0 y crece hasta 100% */
-    white-space: pre-wrap;        /* Permite saltos de línea y respeta espacios */
-    word-break: break-word;       /* Rompe palabras largas al final de línea */
-    border-right: 2px solid var(--primary);
-    font-size: 1.3rem;
-    line-height: 1.6;
-    /* Duración del “tecleo” y parpadeo del cursor */
-    animation:
-      typing 4s steps(80) forwards,
-      blink-caret .75s step-end infinite;
+  display: block;               /* bloque para permitir pre-wrap */
+  width: 0;                     /* inicia oculto */
+  white-space: pre-wrap;        /* respeta saltos de línea */
+  word-break: break-word;       /* permite romper palabras largas */
+  font-size: 1.3rem;
+  line-height: 1.6;
+  overflow: hidden;
+  position: relative;
+  animation: typing 4s steps(80) forwards;
 }
 
+/* cursor fijo de 1.6em de alto */
+.quote span.typing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 2px;
+  height: 1.6em;                   /* un solo renglón */
+  background: var(--primary);
+  animation: blink-caret .75s step-end infinite;
+}
+
+/* “tecleo” */
 @keyframes typing {
-    from { width: 0; }
-    to   { width: 100%; }
+  from { width: 0; }
+  to   { width: 100%; }
 }
 
+/* parpadeo del cursor */
 @keyframes blink-caret {
-    0%,100% { border-color: transparent; }
-    50%     { border-color: var(--primary); }
+  0%,100% { opacity: 0; }
+  50%     { opacity: 1; }
 }
 
-/* Autor aparece tras la escritura */
+/* autor aparece tras la escritura */
 .quote span.author {
-    display: block;
-    opacity: 0;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    margin-top: 0.5rem;
-    animation: fadeInAuthor 1s ease forwards;
-    animation-delay: 4s;
+  display: block;
+  opacity: 0;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+  animation: fadeInAuthor 1s ease forwards;
+  animation-delay: 4s;
 }
 
 @keyframes fadeInAuthor {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
 
 
 /* Roadmap */
