@@ -269,7 +269,6 @@ h1 {
     transform: translateX(3px);
 }
 
-/* Typing effect */
 .quote {
     font-family: 'Roboto Mono', monospace;
     background: rgba(30,41,59,0.9);
@@ -277,42 +276,50 @@ h1 {
     border-radius: 15px;
     border-left: 6px solid var(--primary);
     box-shadow: 0 0 15px rgba(59,130,246,0.3);
-    overflow: hidden; /* Importante para que el texto se "revele" */
+    overflow: hidden;
     margin: 2.5rem 0;
 }
 
 .quote span.typing {
-    /* Las siguientes 3 propiedades son cruciales para el efecto de "máquina de escribir" */
-    display: inline-block; /* Cambiado de 'block' a 'inline-block' para el efecto de ancho */
-    width: 0; /* Empieza con ancho cero */
-    max-width: 100%; /* Asegura que no exceda el contenedor */
-    overflow: hidden; /* Oculta el texto que excede el ancho actual */
-    white-space: nowrap; /* Mantiene todo el texto en una sola línea hasta que se "escribe" */
-    
-    word-wrap: break-word; /* Esto es útil para el contenido, pero 'nowrap' dominará para el efecto typing */
-    
-    border-right: 2px solid var(--primary); /* Tu cursor, usando tu variable */
+    display: block;               /* Bloque para poder envolver en varias líneas */
+    width: 0;                     /* Parte de ancho 0 y crece hasta 100% */
+    white-space: pre-wrap;        /* Permite saltos de línea y respeta espacios */
+    word-break: break-word;       /* Rompe palabras largas al final de línea */
+    border-right: 2px solid var(--primary);
     font-size: 1.3rem;
     line-height: 1.6;
-    margin-bottom: .5rem;
-    
-    /* Animaciones: */
-    /* typing: revela el texto cambiando el ancho */
-    /* blink-caret: hace que el cursor parpadee */
-    animation: 
-        typing 4s steps(80) forwards, /* 'forwards' mantiene el estado final de la animación */
-        blink-caret .75s step-end infinite;
+    /* Duración del “tecleo” y parpadeo del cursor */
+    animation:
+      typing 4s steps(80) forwards,
+      blink-caret .75s step-end infinite;
 }
 
 @keyframes typing {
     from { width: 0; }
-    to { width: 100%; } /* El ancho final al que llega el texto */
+    to   { width: 100%; }
 }
 
 @keyframes blink-caret {
-    0%,100% { border-color: transparent; } /* El cursor es invisible al inicio y al final */
-    50% { border-color: var(--primary); } /* El cursor aparece a la mitad de la duración */
+    0%,100% { border-color: transparent; }
+    50%     { border-color: var(--primary); }
 }
+
+/* Autor aparece tras la escritura */
+.quote span.author {
+    display: block;
+    opacity: 0;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    animation: fadeInAuthor 1s ease forwards;
+    animation-delay: 4s;
+}
+
+@keyframes fadeInAuthor {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 
 /* Roadmap */
 .roadmap-container {
