@@ -270,47 +270,54 @@ h1 {
 }
 
 /* ——— SMOOTH FADE-IN UP QUOTE ——— */
+/* Quote box */
 .quote {
   position: relative;
   font-family: 'Roboto Mono', monospace;
-  background: rgba(30,41,59,0.9);
+  background: rgba(30, 41, 59, 0.9);
   padding: 2.5rem;
   border-radius: 15px;
   border-left: 6px solid var(--primary);
-  box-shadow: 0 0 15px rgba(59,130,246,0.3);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
   overflow: hidden;
   margin: 2.5rem 0;
 }
 
-/* texto principal */
+/* Texto de la cita: un poco más grande y con fade-in hacia arriba */
 .quote .typing {
-  opacity: 0;
-  transform: translateY(20px) scale(0.95) blur(4px);
-  animation: fadeInUp 2s ease-out forwards;
-  animation-delay: 1.5s;
-}
-
-/* autor, aparece tras el texto */
-.quote .author {
+  font-size: 1.4rem;
+  line-height: 1.5;
   opacity: 0;
   transform: translateY(20px) scale(0.95);
-  margin-top: 0.8rem;
-  font-size: 1.3rem;
-  line-height: 1.6;
-  animation: fadeInUp 0.8s ease-out forwards;
-  animation-delay: 1.5s;
+  animation: fadeInUp 1.5s ease-out forwards;
+  animation-delay: 0.5s;
 }
 
+/* Autor: aparece bajo la cita, en tamaño más pequeño */
+.quote .author {
+  display: block;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: var(--gray);
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  margin-top: 1rem;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 2s;
+}
+
+/* Keyframes para el fade-in y slide-up */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.95) blur(4px);
+    transform: translateY(20px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1) blur(0);
+    transform: translateY(0) scale(1);
   }
 }
+
 
 .roadmap {
     display: flex;
