@@ -3,215 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ángel Ménendez | Desarrollador en Formación</title>
+    <title>zerozeid | Desarrollador en Formación</title>
+    <meta name="description" content="Portfolio de zerozeid - Técnico informático en Sistemas Microinformáticos y Redes (SMR), estudiante de DAM y creador de Café y Bytes en YouTube.">
+    <!-- FontAwesome & Devicon Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom Style Sheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Ambient Glow Blobs -->
+    <div class="glow-blob glow-blob-1"></div>
+    <div class="glow-blob glow-blob-2"></div>
+    <div class="glow-blob glow-blob-3"></div>
+
     <div class="container">
-        <header>
-            <div class="profile-pic">
-                <i class="fas fa-code"></i>
+        <!-- HEADER -->
+        <header id="header">
+            <div class="profile-avatar-container">
+                <div class="profile-pic">
+                    <i class="fas fa-code"></i>
+                </div>
             </div>
             <div class="name-container">
-                <h1>Ángel Ménendez</h1>
+                <h1>zerozeid</h1>
                 <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExb285aGxxemZ6M2YzZXhtYWFubXExbXhta21nZmNtbzZ4b2s5aGlndiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dtawoyXRM2CxvdzdkP/giphy.gif" alt="Terminal Typing" class="name-gif">
             </div>
-            <div class="tagline">Técnico informático | 🚧 Portfolio en construcción 🚧 </div>
+            <div class="tagline">Técnico informático | <span>Desarrollador en Formación</span></div>
             <div class="social-links">
-                <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="social-link">
+                <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="social-link" id="youtube-social">
                     <i class="fab fa-youtube"></i> YouTube
                 </a>
-                <a href="mailto:zerozeid@duck.com" class="social-link">
+                <a href="https://github.com/zeroami" target="_blank" class="social-link" id="github-social">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="mailto:zerozeid@duck.com" class="social-link" id="email-social">
                     <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://t.me/amzzdev" target="_blank" class="social-link" id="telegram-social">
+                    <i class="fab fa-telegram-plane"></i> Telegram
                 </a>
             </div>
         </header>
 
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-user"></i> Sobre Mí</h2>
+        <!-- SOBRE MÍ -->
+        <section class="section" id="sobre-mi">
+            <h2 class="section-title"><i class="fas fa-user-astronaut"></i> Sobre Mí</h2>
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                      Soy <strong>Ángel</strong>, un apasionado de la informática en formación con un <strong>Grado Medio en Sistemas Microinformáticos y Redes (SMR)</strong>.
+                        Soy <strong>zerozeid</strong>, un apasionado de la informática en formación continua con un título de <strong>Grado Medio en Sistemas Microinformáticos y Redes (SMR)</strong>.
                     </p>
                     <p>
-                      Actualmente estoy estudiando <strong>Python</strong> y <strong>Bases de datos</strong>, sentando las bases para mi futuro profesional.
+                        Actualmente me dedico a dominar <strong>Python</strong> y el diseño de <strong>Bases de datos</strong> robustas, sentando bases sólidas para automatización y backend.
                     </p>
                     <p>
-                      Paralelamente, mi meta es dominar las tecnologías <strong>backend</strong> y la administración de sistemas.  
-                      Además, tengo planes de continuar mis estudios en <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>.
+                        Mi meta a corto plazo es especializarme en desarrollo **backend** y administración de sistemas en red. Para lograrlo, tengo planificado continuar mis estudios académicos en el ciclo superior de **Desarrollo de Aplicaciones Multiplataforma (DAM)**.
+                    </p>
+                    <p>
+                        En mi canal de YouTube, <a href="https://www.youtube.com/@cafeybytes" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">@cafeybytes</a>, comparto tutoriales prácticos, automatizaciones, scripts y todo mi proceso de aprendizaje con una comunidad que comparte la misma pasión.
                     </p>
 
-
-                    <p>En mi canal de YouTube, <a href="https://www.youtube.com/@cafeybytes" style="color: var(--primary); text-decoration: none;">@cafeybytes</a>, comparto mi proceso de aprendizaje, proyectos y tutoriales sobre programación e informática.</p>
-<div class="quote">
-  <span class="typing">
-    "Cualquier tecnología lo suficientemente avanzada<br>
-    es indistinguible de la magia."
-  </span>
-  <span class="author">— Arthur C. Clarke</span>
-</div>
-
-
-
-
-
+                    <!-- Terminal Interactive Widget -->
+                    <div class="terminal-wrapper">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="terminal-btn btn-close"></span>
+                                <span class="terminal-btn btn-minimize"></span>
+                                <span class="terminal-btn btn-maximize"></span>
+                            </div>
+                            <div class="terminal-title">zerozeid@cafeybytes: ~</div>
+                            <div></div>
+                        </div>
+                        <div class="terminal-body" id="terminal-screen">
+                            <div class="terminal-output">Terminal interactiva inicializada.<br>Escribe <span style="color: var(--accent)">help</span> para ver los comandos disponibles o presiona los botones de abajo.</div>
+                            <div class="terminal-input-line">
+                                <span class="terminal-prompt">zerozeid@cafeybytes:~$</span>
+                                <input type="text" class="terminal-typing-box" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="terminal-quick-actions">
+                            <span class="terminal-quick-label">Accesos rápidos:</span>
+                            <button class="quick-action-btn" data-cmd="neofetch">neofetch</button>
+                            <button class="quick-action-btn" data-cmd="skills">skills</button>
+                            <button class="quick-action-btn" data-cmd="projects">projects</button>
+                            <button class="quick-action-btn" data-cmd="about">about</button>
+                            <button class="quick-action-btn" data-cmd="clear">clear</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="timeline">
-                    <h3>Mi Trayectoria</h3>
+                    <h3 class="timeline-title-text"><i class="fas fa-route" style="color: var(--primary); margin-right: 0.5rem;"></i>Mi Trayectoria</h3>
+                    
                     <div class="timeline-item">
                         <div class="timeline-date">2024 - 2025</div>
-                        <div class="timeline-content"> Técnico informático (Sistemas Microinformáticos y Redes)</div>
+                        <div class="timeline-title-text">Técnico en SMR</div>
+                        <div class="timeline-content">Sistemas Microinformáticos y Redes. Especialización práctica en hardware, configuración de redes locales y administración de servidores básicos.</div>
                     </div>
+
                     <div class="timeline-item">
                         <div class="timeline-date">2025 - 2026</div>
-                        <div class="timeline-content"> Estudiante autodidacta: Python + Bases de datos.</div>
+                        <div class="timeline-title-text">Especialización Autodidacta</div>
+                        <div class="timeline-content">Profundización en programación estructurada y POO con Python, APIs REST (Flask, Django), Web Scraping avanzado y bases de datos relacionales y NoSQL.</div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="timeline-date">2026 - 2027</div>
-                        <div class="timeline-content">(Objetivo) Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</div>
+                        <div class="timeline-date">2026 - 2027 (Planificado)</div>
+                        <div class="timeline-title-text">Grado Superior DAM</div>
+                        <div class="timeline-content">Desarrollo de Aplicaciones Multiplataforma. Consolidación de src de ingeniería de software, interfaces visuales multiplataforma y desarrollo ágil.</div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="timeline-date">📌 Plan de Desarrollo Profesional</div>
-                        <div class="timeline-content">Una vez finalice mis estudios en Desarrollo de Aplicaciones Multiplataforma, mi objetivo es ampliar mis conocimientos en el área de redes y administración de sistemas cursando el ciclo formativo de grado superior en Administración de Sistemas Informáticos en Red (ASIR).
-Paralelamente, continuaré perfeccionando mis src en Python, Bases de datos, Frameworks y otras tecnologías que me permitan mantenerme actualizado.</div>
+                        <div class="timeline-date">📌 Futuro Profesional</div>
+                        <div class="timeline-title-text">Administración ASIR</div>
+                        <div class="timeline-content">Mi meta final es complementar el título de DAM con el Grado Superior en ASIR (Administración de Sistemas Informáticos en Red) para lograr un perfil Fullstack/DevOps sumamente competitivo.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-<!-- ========= HABILIDADES EN DESARROLLO ========= -->
-<section class="section">
-  <h2 class="section-title">
-    <i class="fas fa-laptop-code"></i> Habilidades en desarrollo
-  </h2>
+        <!-- HABILIDADES -->
+        <section class="section" id="habilidades">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Habilidades en desarrollo</h2>
+            <div class="skills-container">
+                <!-- PYTHON -->
+                <div class="skill-category">
+                    <h3 class="skill-title"><i class="devicon-python-plain colored"></i> Python</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-cubes"></i> Prog. Orientada a Objetos</span>
+                                <span class="skill-badge badge-mastered">Avanzado</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="85%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-sitemap"></i> Estructuras de Datos</span>
+                                <span class="skill-badge badge-progress">En Progreso</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="70%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-spider"></i> Web Scraping</span>
+                                <span class="skill-badge badge-mastered">Avanzado</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="90%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-  <div class="skills-container">
+                <!-- BASES DE DATOS -->
+                <div class="skill-category">
+                    <h3 class="skill-title"><i class="devicon-mysql-plain colored"></i> Bases de Datos</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-database"></i> SQL (Consultas y ACID)</span>
+                                <span class="skill-badge badge-mastered">Avanzado</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="80%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-project-diagram"></i> Modelado de datos</span>
+                                <span class="skill-badge badge-progress">En Progreso</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="75%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-link"></i> SQLAlchemy (ORM)</span>
+                                <span class="skill-badge badge-mastered">Dominado</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="85%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="devicon-mongodb-plain colored"></i> MongoDB (NoSQL)</span>
+                                <span class="skill-badge badge-exploring">Explorando</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="45%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-    <!-- ──────────── PYTHON ──────────── -->
-    <div class="skill-category">
-      <h3 class="skill-title">
-        <i class="devicon-python-plain colored"></i> Python
-      </h3>
-      <ul class="skill-list">
-        <li class="skill-item">
-          <i class="devicon-python-plain colored skill-icon"></i>
-          Programación Orientada a Objetos&nbsp;(POO)
-        </li>
-        <li class="skill-item">
-          <i class="devicon-python-plain colored skill-icon"></i>
-          Estructuras de datos
-        </li>
-        <li class="skill-item">
-          <i class="devicon-python-plain colored skill-icon"></i>
-          Web Scraping
-        </li>
-      </ul>
-    </div>
+                <!-- BACKEND -->
+                <div class="skill-category">
+                    <h3 class="skill-title"><i class="devicon-flask-original colored"></i> Backend</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-fire"></i> Flask (APIs REST)</span>
+                                <span class="skill-badge badge-mastered">Avanzado</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="80%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="devicon-django-plain colored"></i> Django Framework</span>
+                                <span class="skill-badge badge-progress">En Progreso</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="60%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-shield-alt"></i> Autenticación y Seguridad</span>
+                                <span class="skill-badge badge-progress">En Progreso</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="65%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-vial"></i> Testing (pytest)</span>
+                                <span class="skill-badge badge-exploring">Explorando</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="50%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-    <!-- ──────────── BASES DE DATOS ──────────── -->
-    <div class="skill-category">
-      <h3 class="skill-title">
-        <i class="devicon-mysql-plain colored"></i> Bases de Datos
-      </h3>
-      <ul class="skill-list">
-        <li class="skill-item">
-          <i class="devicon-mysql-plain colored skill-icon"></i>
-          SQL (Consultas avanzadas)
-        </li>
-        <li class="skill-item">
-          <i class="devicon-mysql-plain colored skill-icon"></i>
-          Modelado de datos
-        </li>
-<!-- Transacciones y ACID -->
-<li class="skill-item">
-  <i class="fa-solid fa-rotate skill-icon"></i>
-  Transacciones y ACID
-</li>
+                <!-- OTRAS HERRAMIENTAS -->
+                <div class="skill-category">
+                    <h3 class="skill-title"><i class="devicon-git-plain colored"></i> Herramientas / OS</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="devicon-linux-plain colored"></i> Terminal Linux & Bash</span>
+                                <span class="skill-badge badge-mastered">Avanzado</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="85%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="devicon-pandas-original colored"></i> Pandas (Datos)</span>
+                                <span class="skill-badge badge-progress">En Progreso</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="55%"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-name-wrap"><i class="fas fa-chart-line"></i> Matplotlib (Visualización)</span>
+                                <span class="skill-badge badge-progress">En Progreso</span>
+                            </div>
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" data-progress="60%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-<!-- SQLAlchemy (ORM) -->
-<li class="skill-item">
-  <i class="fa-solid fa-database skill-icon"></i>
-  SQLAlchemy (ORM)
-</li>
-
-  <!-- MongoDB -->
-  <li class="skill-item">
-    <i class="devicon-mongodb-plain colored skill-icon"></i>
-    MongoDB (NoSQL)
-  </li>
-
-      </ul>
-    </div>
-
-    <!-- ──────────── BACKEND ──────────── -->
-    <div class="skill-category">
-      <h3 class="skill-title">
-        <i class="devicon-flask-original colored"></i> Backend
-      </h3>
-      <ul class="skill-list">
-        <li class="skill-item">
-          <i class="devicon-flask-original colored skill-icon"></i>
-          Flask (APIs REST)
-        </li>
-        <li class="skill-item">
-          <i class="devicon-django-plain colored skill-icon"></i>
-          Django Framework
-        </li>
-        <li class="skill-item">
-          <i class="fas fa-user-shield skill-icon" style="color:var(--primary)"></i>
-          Autenticación básica en Flask/Django
-        </li>
-        <li class="skill-item">
-          <i class="devicon-python-plain colored skill-icon"></i>
-          Testing (pytest)
-        </li>
-        <li class="skill-item">
-          <i class="fas fa-cloud-upload-alt skill-icon" style="color:var(--primary)"></i>
-          Despliegue de aplicaciones
-        </li>
-      </ul>
-    </div>
-
-    <!-- ──────────── OTRAS HERRAMIENTAS ──────────── -->
-    <div class="skill-category">
-      <h3 class="skill-title">
-        <i class="devicon-git-plain colored"></i> Otras Herramientas
-      </h3>
-      <ul class="skill-list">
-        <li class="skill-item">
-          <i class="devicon-linux-plain colored skill-icon"></i>
-          Linux Terminal
-        </li>
-        <li class="skill-item">
-          <i class="devicon-pandas-original colored skill-icon"></i>
-          Pandas (Análisis de datos)
-        </li>
-     <li class="skill-item">
-  <i class="fa-solid fa-chart-line skill-icon"></i>
-  Matplotlib (Visualización)
-</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-
-        <section class="section">
+        <!-- PROYECTOS -->
+        <section class="section" id="proyectos">
             <h2 class="section-title"><i class="fas fa-folder-open"></i> Proyectos Destacados</h2>
             <div class="projects-grid">
+                <!-- AutoScripts -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3 class="project-title">Scraper de Noticias</h3>
-                        <span class="project-status status-completed">Planificado para Semana 17 (Diciembre 2025)</span>
+                        <span class="project-type-badge">Desktop App / Automatización</span>
+                        <h3 class="project-title">AutoScripts Production Suite</h3>
+                        <span class="project-status status-completed"><i class="fas fa-check-circle"></i> Activo (Completado)</span>
                     </div>
                     <div class="project-body">
-                        <p>Web scraper que recopila artículos de diferentes fuentes de noticias utilizando BeautifulSoup y almacena los datos en formato estructurado.</p>
+                        <p>Herramienta visual avanzada desarrollada en CustomTkinter orientada a la automatización de la producción de audio y video. Integra generación de voz por clonación de IA, transcriptor automático Whisper y sistema inteligente de monitorización de GPU/VRAM en tiempo real para evitar desbordamiento de memoria gráfica.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">CustomTkinter</span>
+                            <span class="tech-tag">Whisper</span>
+                            <span class="tech-tag">CUDA</span>
+                            <span class="tech-tag">PyTorch</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Explorar código <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Meta AI Automation -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-type-badge">Extension / Scripting</span>
+                        <h3 class="project-title">Meta AI Automation Logic</h3>
+                        <span class="project-status status-completed"><i class="fas fa-check-circle"></i> Activo (Completado)</span>
+                    </div>
+                    <div class="project-body">
+                        <p>Módulo de automatización y extensión de navegador diseñado para interactuar con la interfaz dinámica de Meta AI. Optimiza el despacho de prompts simulando eventos de entrada a nivel de DOM y sorteando barreras de UI dinámicas de forma estable.</p>
+                        <div class="tech-list">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">DOM Events</span>
+                            <span class="tech-tag">Web Extensions</span>
+                            <span class="tech-tag">Regex</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Ver en GitHub <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- News Scraper -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-type-badge">Web Scraping</span>
+                        <h3 class="project-title">Scraper de Noticias</h3>
+                        <span class="project-status status-in-progress"><i class="fas fa-spinner fa-spin"></i> Semana 17 (Diciembre 2025)</span>
+                    </div>
+                    <div class="project-body">
+                        <p>Web scraper avanzado que recopila noticias en tiempo real de múltiples portales digitales. Analiza la estructura HTML con BeautifulSoup, extrae metadatos y guarda toda la información limpia en formatos estructurados como CSV o bases de datos SQLite.</p>
                         <div class="tech-list">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">BeautifulSoup</span>
@@ -220,17 +349,19 @@ Paralelamente, continuaré perfeccionando mis src en Python, Bases de datos, Fra
                         </div>
                     </div>
                     <div class="project-footer">
-                        <a href="#" class="project-link">Ver Proyecto</a>
+                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Repositorio <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
+                <!-- Gestor de Biblioteca -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3 class="project-title">Gestor de Biblioteca</h3>
-                        <span class="project-status status-in-progress">Planificado para semanas 16 a 22</span>
+                        <span class="project-type-badge">Backend / CLI</span>
+                        <h3 class="project-title">Gestor de Biblioteca SQL</h3>
+                        <span class="project-status status-planned"><i class="fas fa-clock"></i> Planificado (Semanas 16 a 22)</span>
                     </div>
                     <div class="project-body">
-                        <p>Aplicación de línea de comandos para gestionar una biblioteca, con almacenamiento en base de datos SQL y ORM SQLAlchemy.</p>
+                        <p>Aplicación modular de línea de comandos para la gestión de inventario y usuarios de bibliotecas. Conectada a bases de datos relacionales SQLite mediante el ORM SQLAlchemy y dotada de una interfaz interactiva de consola estructurada con Click.</p>
                         <div class="tech-list">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">SQLAlchemy</span>
@@ -239,71 +370,295 @@ Paralelamente, continuaré perfeccionando mis src en Python, Bases de datos, Fra
                         </div>
                     </div>
                     <div class="project-footer">
-                        <a href="#" class="project-link">Ver Proyecto</a>
+                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Ver Detalles <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
+                <!-- API REST con Flask -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3 class="project-title">API REST con Flask</h3>
-                        <span class="project-status status-in-progress">Planificado: Semana 35</span>
+                        <span class="project-type-badge">API Backend</span>
+                        <h3 class="project-title">API RESTful con Flask</h3>
+                        <span class="project-status status-planned"><i class="fas fa-clock"></i> Planificado (Semana 35)</span>
                     </div>
                     <div class="project-body">
-                        <p>API RESTful para gestión de usuarios y recursos, utilizando Flask y SQLAlchemy para la conexión a base de datos. </p>
+                        <p>API RESTful de servicios para la administración integral de recursos y perfiles de usuarios. Utiliza Flask, Flask-SQLAlchemy para persistencia relacional estructurada, y controladores de validación de JWT para endpoints privados.</p>
                         <div class="tech-list">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Flask</span>
                             <span class="tech-tag">SQLAlchemy</span>
+                            <span class="tech-tag">JWT</span>
                         </div>
                     </div>
                     <div class="project-footer">
-                        <a href="#" class="project-link">Ver Proyecto</a>
+                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Ver Detalles <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-envelope"></i> Contacto</h2>
+        <!-- YOUTUBE SHOWCASE (Café y Bytes) -->
+        <section class="section youtube-section" id="youtube">
+            <div class="youtube-header-wrap">
+                <h2 class="section-title" style="margin-bottom: 0;"><i class="fab fa-youtube"></i> Café y Bytes (YouTube)</h2>
+                <a href="https://www.youtube.com/@cafeybytes?sub_confirmation=1" target="_blank" class="youtube-subscribe-btn">
+                    <i class="fab fa-youtube"></i> Suscribirse
+                </a>
+            </div>
+            <div class="youtube-grid">
+                <!-- Python Card -->
+                <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="youtube-card">
+                    <div class="youtube-thumbnail-placeholder">
+                        <i class="fab fa-python video-icon"></i>
+                        <span class="youtube-duration">12:30</span>
+                    </div>
+                    <div class="youtube-card-body">
+                        <h3 class="youtube-card-title">Tutoriales de Python desde cero</h3>
+                        <p class="youtube-card-desc">Domina las bases del lenguaje más popular: variables, POO, estructuras lógicas de control y resolución de problemas prácticos.</p>
+                        <div class="youtube-card-footer">
+                            <i class="fas fa-play-circle"></i> Ver lista de reproducción
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Database Card -->
+                <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="youtube-card">
+                    <div class="youtube-thumbnail-placeholder">
+                        <i class="fas fa-database video-icon"></i>
+                        <span class="youtube-duration">18:45</span>
+                    </div>
+                    <div class="youtube-card-body">
+                        <h3 class="youtube-card-title">Aprende SQL y Diseño Relacional</h3>
+                        <p class="youtube-card-desc">Bases de datos estructuradas, consultas complejas con JOIN, modelado Entidad-Relación y principios transaccionales ACID.</p>
+                        <div class="youtube-card-footer">
+                            <i class="fas fa-play-circle"></i> Ver lista de reproducción
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Systems / Networking Card -->
+                <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="youtube-card">
+                    <div class="youtube-thumbnail-placeholder">
+                        <i class="fas fa-server video-icon"></i>
+                        <span class="youtube-duration">15:10</span>
+                    </div>
+                    <div class="youtube-card-body">
+                        <h3 class="youtube-card-title">Administración y Redes (SMR)</h3>
+                        <p class="youtube-card-desc">Mi experiencia en el grado medio de SMR: cableado estructurado, terminal de comandos Linux, direccionamiento IP y servicios de red.</p>
+                        <div class="youtube-card-footer">
+                            <i class="fas fa-play-circle"></i> Ver lista de reproducción
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section class="section" id="contacto">
+            <h2 class="section-title"><i class="fas fa-paper-plane"></i> Contacto</h2>
             <div class="contact-methods">
                 <div class="contact-card">
                     <i class="fab fa-youtube"></i>
                     <h3 class="contact-title">YouTube</h3>
-                    <p class="contact-info">Sigue mi aprendizaje y proyectos</p>
-                    <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="contact-link">@cafeybytes</a>
+                    <p class="contact-info">Mi canal de aprendizaje y tutoriales</p>
+                    <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="contact-btn">@cafeybytes</a>
                 </div>
 
                 <div class="contact-card">
                     <i class="fas fa-envelope"></i>
                     <h3 class="contact-title">Email</h3>
-                    <p class="contact-info">Contáctame para colaboraciones</p>
-                    <a href="mailto:amzzdev@proton.me" class="contact-link">zerozeid@duck.com</a>
+                    <p class="contact-info">Escríbeme para colaborar</p>
+                    <a href="mailto:zerozeid@duck.com" class="contact-btn">zerozeid@duck.com</a>
                 </div>
 
                 <div class="contact-card">
                     <i class="fab fa-github"></i>
                     <h3 class="contact-title">GitHub</h3>
-                    <p class="contact-info">Explora mi código y proyectos</p>
-                    <a href="#" class="contact-link">github.com/zeroami</a>
+                    <p class="contact-info">Explora mis repositorios</p>
+                    <a href="https://github.com/zeroami" target="_blank" class="contact-btn">github.com/zeroami</a>
                 </div>
 
                 <div class="contact-card">
                     <i class="fab fa-telegram-plane"></i>
                     <h3 class="contact-title">Telegram</h3>
-                    <p class="contact-info">Chatea conmigo sobre proyectos</p>
-                    <a href="https://t.me/amzzdev" target="_blank" class="contact-link">zerozeid@duck.com</a>
+                    <p class="contact-info">Hablemos de tus proyectos</p>
+                    <a href="https://t.me/amzzdev" target="_blank" class="contact-btn">t.me/amzzdev</a>
                 </div>
             </div>
         </section>
 
+        <!-- FOOTER -->
         <footer class="footer">
-  <p>© 2025 Ángel Ménendez</p>
-  <p>“La mejor forma de predecir el futuro es inventarlo.”
-— Alan Kay</p>
-  <p>Creador de <a href="https://www.youtube.com/@cafeybytes" target="_blank">@cafeybytes</a></p>
-  <p>Última actualización: Julio 2025</p>
-</footer>
-
+            <p>© 2026 zerozeid — Creador de <a href="https://www.youtube.com/@cafeybytes" target="_blank">@cafeybytes</a></p>
+            <p style="font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--accent); margin-top: 0.5rem;">
+                “La mejor forma de predecir el futuro es inventarlo.” — Alan Kay
+            </p>
+            <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 1rem;">Última actualización: Mayo 2026</p>
+        </footer>
     </div>
+
+    <!-- CORE INTERACTIVE JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // ==========================================
+            // 1. EFECTO SPOTLIGHT CARD MOUSE TRACKING
+            // ==========================================
+            const cards = document.querySelectorAll('.section, .project-card, .skill-category, .contact-card, .youtube-card, .terminal-wrapper');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // ==========================================
+            // 2. ANIMACIÓN DE BARRAS DE PROGRESO DE HABILIDADES
+            // ==========================================
+            const progressFills = document.querySelectorAll('.skill-progress-fill');
+            
+            const animateSkills = () => {
+                progressFills.forEach(fill => {
+                    const targetProgress = fill.getAttribute('data-progress');
+                    const rect = fill.getBoundingClientRect();
+                    
+                    // Solo animar si está en el viewport
+                    if(rect.top < window.innerHeight && rect.bottom >= 0) {
+                        fill.style.width = targetProgress;
+                    }
+                });
+            };
+
+            // Escuchar el scroll para gatillar animaciones
+            window.addEventListener('scroll', animateSkills);
+            // Ejecutar en la carga inicial por si ya están visibles
+            setTimeout(animateSkills, 500);
+
+            // ==========================================
+            // 3. SIMULACIÓN DE TERMINAL INTERACTIVA
+            // ==========================================
+            const terminalInput = document.getElementById('terminal-input');
+            const terminalScreen = document.getElementById('terminal-screen');
+            const quickActionButtons = document.querySelectorAll('.quick-action-btn');
+            
+            const responseDb = {
+                'help': `Comandos disponibles:
+  <span style="color: var(--accent)">about</span>       - Resumen breve sobre zerozeid
+  <span style="color: var(--accent)">skills</span>      - Lista de tecnologías y frameworks
+  <span style="color: var(--accent)">projects</span>    - Información de desarrollos clave
+  <span style="color: var(--accent)">youtube</span>     - Datos del canal Café y Bytes
+  <span style="color: var(--accent)">neofetch</span>    - Logotipo y resumen del sistema
+  <span style="color: var(--accent)">clear</span>       - Limpiar pantalla`,
+                
+                'about': `[ZEROZEID - SOBRE MÍ]
+Técnico informático titulado en SMR (Sistemas Microinformáticos y Redes).
+Actualmente estudiando Python y Bases de datos (SQL, NoSQL, ORM) con la
+meta de especializarme en desarrollo Backend y Administración.
+Canal de YouTube: @cafeybytes (Compartiendo conocimiento y automatizaciones).`,
+                
+                'skills': `[HABILIDADES Y TECNOLOGÍAS]
+  - Python: Programación Orientada a Objetos, Scraping (BeautifulSoup), Pandas.
+  - Bases de Datos: SQL avanzado, SQLAlchemy ORM, Modelado Relacional, MongoDB.
+  - Backend: Flask APIs REST, Django, Auth & JWT, Pytest.
+  - Sistemas: Terminal Linux & Bash Scripting, Redes y Administración SMR.`,
+                
+                'projects': `[PROYECTOS DESTACADOS]
+  1. AutoScripts Production Suite (Python / CustomTkinter / PyTorch)
+     - Suite visual de clonación por IA (TTS), transcriptor Whisper y control GPU/VRAM.
+  2. Meta AI Automation (JavaScript / DOM)
+     - Lógica de eventos estables y bypass de UI para automatizar prompts.
+  3. Scraper de Noticias (Python / BeautifulSoup / Requests)
+     - Recopilador y procesador estructurado en tiempo real.
+  4. Gestor de Biblioteca (Python / SQLAlchemy / Click)
+     - CLI backend conectado a SQLite relacional.`,
+                
+                'youtube': `[CANAL: CAFÉ Y BYTES]
+Plataforma: YouTube (@cafeybytes)
+Objetivo: Divulgar programación práctica, redes y sistemas de forma amena.
+Temas principales:
+  - Automatización del día a día con Python
+  - Resolviendo retos de Bases de Datos
+  - Entendiendo las Redes desde SMR
+Visita y suscríbete en: https://www.youtube.com/@cafeybytes`,
+                
+                'neofetch': `<span style="color: var(--primary)">      /\\_/\\      </span>   <span style="color: var(--accent)">zerozeid@cafeybytes</span>
+<span style="color: var(--primary)">     ( o.o )     </span>   -------------------
+<span style="color: var(--primary)">      > ^ <      </span>   OS: Windows 11 / Linux (SMR Environment)
+<span style="color: var(--primary)">    /       \\    </span>   Host: DevStation 2026
+<span style="color: var(--primary)">   /|       |\\   </span>   Kernel: Python 3.12 / CustomTkinter GUI
+<span style="color: var(--primary)">  (_|_______|_)  </span>   Uptime: 24/7 coding
+                    Shell: Powershell / Bash
+                    Editor: Visual Studio Code
+                    Language: Python, SQL, JavaScript
+                    Hobby: Café & Bytes☕💻`
+            };
+
+            const writeToTerminal = (text) => {
+                const outputDiv = document.createElement('div');
+                outputDiv.className = 'terminal-output';
+                outputDiv.innerHTML = text;
+                // Insertar justo antes de la línea de entrada
+                terminalScreen.insertBefore(outputDiv, terminalScreen.lastElementChild);
+                terminalScreen.scrollTop = terminalScreen.scrollHeight;
+            };
+
+            const executeCommand = (cmdText) => {
+                const cleanCmd = cmdText.trim().toLowerCase();
+                
+                // Mostrar el comando ejecutado en pantalla
+                const echoDiv = document.createElement('div');
+                echoDiv.className = 'terminal-input-line';
+                echoDiv.innerHTML = `<span class="terminal-prompt">zerozeid@cafeybytes:~$</span> <span>${cmdText}</span>`;
+                terminalScreen.insertBefore(echoDiv, terminalScreen.lastElementChild);
+
+                if (cleanCmd === '') {
+                    terminalScreen.scrollTop = terminalScreen.scrollHeight;
+                    return;
+                }
+
+                if (cleanCmd === 'clear') {
+                    // Remover todas las salidas y comandos anteriores
+                    const elementsToRemove = terminalScreen.querySelectorAll('.terminal-output, .terminal-input-line');
+                    elementsToRemove.forEach(el => {
+                        if (el !== terminalScreen.lastElementChild) {
+                            el.remove();
+                        }
+                    });
+                } else if (responseDb[cleanCmd]) {
+                    writeToTerminal(responseDb[cleanCmd]);
+                } else {
+                    writeToTerminal(`Comando no encontrado: <span style="color: #ef4444">${cleanCmd}</span>. Escribe <span style="color: var(--accent)">help</span> para ver las opciones.`);
+                }
+                
+                terminalScreen.scrollTop = terminalScreen.scrollHeight;
+            };
+
+            terminalInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const value = terminalInput.value;
+                    executeCommand(value);
+                    terminalInput.value = '';
+                }
+            });
+
+            // Enlazar los botones de accesos rápidos
+            quickActionButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cmd = btn.getAttribute('data-cmd');
+                    executeCommand(cmd);
+                });
+            });
+
+            // Auto-escribir neofetch al inicio para dar impacto visual
+            setTimeout(() => {
+                executeCommand('neofetch');
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
