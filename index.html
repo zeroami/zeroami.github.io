@@ -1,66 +1,291 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zerozeid — Dev in Training</title>
+  <meta name="description" content="Técnico informático y desarrollador en formación. Construyo herramientas de automatización en Python, scripts para producción de contenido y aplicaciones de escritorio.">
+  <link rel="canonical" href="https://zeroami.github.io/">
+  <meta property="og:title" content="zerozeid — Dev in Training">
+  <meta property="og:description" content="Técnico informático y desarrollador en formación.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zeroami.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#07070f;--bg2:#0c0c1a;--bgc:rgba(255,255,255,.03);--bgh:rgba(255,255,255,.055);
+      --bd:rgba(255,255,255,.07);--bda:rgba(129,140,248,.28);
+      --t:#e2e8f0;--t2:#94a3b8;--t3:#475569;
+      --ac:#818cf8;--acd:rgba(129,140,248,.14);
+      --cy:#22d3ee;--cyd:rgba(34,211,238,.12);
+      --gr:#4ade80;
+      --r:14px;--rl:20px;
+      --f:'Inter',system-ui,sans-serif;--m:'JetBrains Mono',Consolas,monospace;
+      --nh:68px;--sh:0 4px 28px rgba(0,0,0,.45);--gw:0 0 40px rgba(129,140,248,.09)
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--f);background:var(--bg);color:var(--t);line-height:1.6;-webkit-font-smoothing:antialiased}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+    :focus-visible{outline:2px solid var(--ac);outline-offset:3px;border-radius:4px}
+    a{color:inherit;text-decoration:none}
 
-    <title>zerozeid - Dev in Training</title>
-    <meta
-      name="description"
-      content="IT technician and developer in training. Builds Python automation tools, web scrapers, REST APIs, and desktop apps."
-    />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://zeroami.github.io/" />
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nh);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);border-bottom:1px solid transparent;transition:background .3s,border-color .3s,backdrop-filter .3s}
+    nav.sc{background:rgba(7,7,15,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-color:var(--bd)}
+    .nl{display:flex;align-items:center;gap:.5rem;font-family:var(--m);font-size:1rem;font-weight:500;color:var(--t)}
+    .nd{width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pd 2.5s ease-in-out infinite}
+    @keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+    .nv{display:flex;align-items:center;gap:clamp(1.25rem,3vw,2.25rem);list-style:none}
+    .nv a{font-size:.88rem;font-weight:500;color:var(--t2);transition:color .2s}
+    .nv a:hover{color:var(--t)}
+    .nc{padding:.5rem 1.2rem;min-height:44px;background:var(--acd);border:1px solid var(--bda);border-radius:8px;font-size:.85rem!important;font-weight:600!important;color:var(--ac)!important;display:inline-flex!important;align-items:center;transition:background .2s,border-color .2s!important}
+    .nc:hover{background:rgba(129,140,248,.25)!important;border-color:var(--ac)!important}
 
-    <meta property="og:title" content="zerozeid - Dev in Training" />
-    <meta
-      property="og:description"
-      content="IT technician and developer in training. Builds Python automation tools, web scrapers, REST APIs, and desktop apps."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://zeroami.github.io/" />
+    /* HERO */
+    .hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3.5rem;padding:calc(var(--nh) + 4rem) clamp(1.25rem,5vw,4rem) 4rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 55% at 15% 55%,rgba(129,140,248,.07) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 85% 25%,rgba(34,211,238,.05) 0%,transparent 65%)}
+    .hl{position:relative;z-index:1}
+    .badge{display:inline-flex;align-items:center;gap:.45rem;padding:.35rem .85rem;margin-bottom:1.5rem;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.22);border-radius:99px;font-size:.78rem;font-weight:600;color:var(--gr)}
+    .bd2{width:6px;height:6px;background:var(--gr);border-radius:50%;animation:pd 2s ease-in-out infinite}
+    h1{font-size:clamp(3.25rem,6.5vw,5.25rem);font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:.9rem;background:linear-gradient(135deg,#e2e8f0 0%,#8892a4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hs{font-family:var(--m);font-size:clamp(.85rem,1.6vw,1rem);color:var(--ac);margin-bottom:1.15rem;letter-spacing:-.01em}
+    .hd{font-size:clamp(.95rem,1.4vw,1.08rem);color:var(--t2);line-height:1.72;max-width:460px;margin-bottom:2.25rem}
+    .ha{display:flex;gap:.875rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.72rem 1.6rem;border-radius:10px;border:none;font-size:.92rem;font-weight:600;cursor:pointer;transition:transform .15s,opacity .15s,box-shadow .18s;min-height:44px;text-decoration:none}
+    .btn:active{transform:scale(.97)}
+    .bp{background:var(--ac);color:#fff}.bp:hover{opacity:.9;box-shadow:0 4px 22px rgba(129,140,248,.32)}
+    .bo{background:var(--bgc);color:var(--t);border:1px solid var(--bd)}.bo:hover{background:var(--bgh);border-color:var(--bda)}
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="zerozeid - Dev in Training" />
-    <meta
-      name="twitter:description"
-      content="IT technician and developer in training. Builds Python automation tools, web scrapers, REST APIs, and desktop apps."
-    />
+    /* TERMINAL */
+    .hr{position:relative;z-index:1}
+    .term{background:#0d1117;border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden;box-shadow:var(--sh),var(--gw)}
+    .th{display:flex;align-items:center;gap:.45rem;padding:.8rem 1.1rem;border-bottom:1px solid var(--bd);background:rgba(255,255,255,.02)}
+    .td2{width:12px;height:12px;border-radius:50%}
+    .td2:nth-child(1){background:#ff5f57}.td2:nth-child(2){background:#febc2e}.td2:nth-child(3){background:#28c840}
+    .tt{font-family:var(--m);font-size:.72rem;color:var(--t3);margin:0 auto}
+    .tb{padding:1.1rem 1.4rem;font-family:var(--m);font-size:.8rem;line-height:1.85;min-height:260px}
+    .tp{color:var(--ac)}.tc2{color:var(--t)}.tok{color:var(--gr)}.ti{color:var(--t2)}.tcm{color:#8b949e}
+    .cur{display:inline-block;width:7px;height:1em;background:var(--ac);vertical-align:text-bottom;border-radius:1px;animation:bl .9s step-end infinite}
+    @keyframes bl{0%,100%{opacity:1}50%{opacity:0}}
 
-    <link rel="preload" href="/fonts/urbanist-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/urbanist-700.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/urbanist-900.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/pro-font-windows-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/pro-font-windows-700.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    /* SECTIONS */
+    section{padding:5.5rem clamp(1.25rem,5vw,4rem)}
+    .sl{font-family:var(--m);font-size:.77rem;font-weight:500;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem}
+    .st{font-size:clamp(1.85rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1.1rem}
+    .sd{font-size:1.02rem;color:var(--t2);max-width:540px;line-height:1.72;margin-bottom:2.75rem}
 
-    <link rel="icon" type="image/png" href="/meta/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/meta/favicon.svg" />
-    <link rel="shortcut icon" href="/meta/favicon.ico" />
+    /* BENTO */
+    .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:.9rem;max-width:1160px;margin:0 auto}
+    .bc{background:var(--bgc);border:1px solid var(--bd);border-radius:var(--rl);padding:1.65rem;transition:border-color .25s,background .25s,transform .25s,box-shadow .25s}
+    .bc:hover{border-color:var(--bda);background:var(--bgh);transform:translateY(-2px);box-shadow:var(--gw)}
+    .s7{grid-column:span 7}.s5{grid-column:span 5}.s8{grid-column:span 8}.s4{grid-column:span 4}
+    .btext{font-size:1.02rem;color:var(--t2);line-height:1.78}.btext strong{color:var(--t)}
+    .sg2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;height:100%}
+    .sn{font-size:2.1rem;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--t)}.sn span{color:var(--ac)}
+    .slb{font-size:.78rem;color:var(--t3);font-weight:500;margin-top:.2rem}
+    .ytl{font-family:var(--m);font-size:.72rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+    .ytc{font-size:1.2rem;font-weight:700;color:var(--t);margin-bottom:.5rem}
+    .ytd{font-size:.88rem;color:var(--t2);line-height:1.6;margin-bottom:1rem;flex:1}
+    .yta{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;color:#ff4444;transition:opacity .2s}.yta:hover{opacity:.8}.yta svg{width:17px;height:17px}
+    .nwl{font-family:var(--m);font-size:.72rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.65rem}
+    .nwt{font-size:1.45rem;font-weight:800;letter-spacing:-.03em;color:var(--t)}.nwt span{color:var(--ac)}
+    .nws{font-family:var(--m);font-size:.78rem;color:var(--t3);margin-top:.4rem}
+    .gc{position:relative;overflow:hidden}.gc::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,var(--acd) 0%,transparent 60%);pointer-events:none}
 
-    <meta name="theme-color" content="#dfd1bc" />
-    <script type="module" crossorigin src="/chunks/index-C1Ob9hCt.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/Dy-Ew5xp.css">
-  </head>
-  <body class="is-loading">
-    <svg style="display: none" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <path
-          id="logo-path"
-          d="M3 14 24 2C28 0 28 0 32 2L53 14C56 16 56 17 56 19L56 43C56 46 55 47 51 49L32 59C28 61 28 61 24 59L5 49C1 47 0 46 0 43L0 19C0 17 0 16 3 14M28 4 5 17 28 28 51 17 28 4M53 20 30 31 30 56 53 44 53 20M40 42 33 35C33 35 32 34 33 33 34 32 35 33 36 34L36 34 43 41C44 42 44 42 43 43L35 51C35 51 34 52 33 51 32 50 33 49 33 49L40 42M16 42 23 35C23 35 24 34 23 33 22 32 21 33 20 34L13 41C12 42 12 42 13 43L21 51C21 51 22 52 23 51 24 50 23 49 23 49L16 42"
-        ></path>
-      </defs>
-    </svg>
-    <div id="app"></div>
-    <div class="preloader">
-      <svg class="preloader-svg" viewBox="0 0 56 61" xmlns="http://www.w3.org/2000/svg">
-        <mask id="preloader-mask">
-          <rect fill="black" height="61" width="61"></rect>
-          <rect fill="white" height="61" width="61" class="preloader-rect" style="transform: scaleY(0)"></rect>
-        </mask>
+    /* STACK */
+    #stack{background:var(--bg2)}
+    .skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.7rem;max-width:880px}
+    .sk{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;padding:1.15rem .9rem;background:var(--bgc);border:1px solid var(--bd);border-radius:var(--r);font-size:.8rem;font-weight:600;color:var(--t2);transition:border-color .2s,background .2s,color .2s,transform .2s;min-height:44px;cursor:default;text-align:center}
+    .sk:hover{border-color:var(--bda);background:var(--bgh);color:var(--t);transform:translateY(-3px)}
+    .skd{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--m);font-size:.68rem;font-weight:700;flex-shrink:0}
 
-        <use href="#logo-path" class="preloader-path" opacity="0.3"></use>
-        <use href="#logo-path" class="preloader-path" mask="url(#preloader-mask)"></use>
-      </svg>
+    /* PROJECTS */
+    .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.1rem;max-width:1160px;margin:0 auto}
+    .pj{background:var(--bgc);border:1px solid var(--bd);border-radius:var(--rl);padding:1.65rem;display:flex;flex-direction:column;gap:.9rem;transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+    .pj::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--acd),transparent);opacity:0;transition:opacity .25s}
+    .pj:hover{border-color:var(--bda);background:var(--bgh);transform:translateY(-3px);box-shadow:var(--sh),var(--gw)}.pj:hover::after{opacity:1}
+    .pn{font-family:var(--m);font-size:.72rem;color:var(--t3)}
+    .pt{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;color:var(--t)}
+    .pd2{font-size:.9rem;color:var(--t2);line-height:1.68;flex:1}
+    .tags{display:flex;flex-wrap:wrap;gap:.38rem}
+    .tag{padding:.22rem .6rem;border-radius:6px;font-family:var(--m);font-size:.7rem;font-weight:500}
+    .ta{background:var(--acd);border:1px solid rgba(129,140,248,.15);color:var(--ac)}
+    .tc3{background:var(--cyd);border:1px solid rgba(34,211,238,.15);color:var(--cy)}
+    .tg{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.18);color:var(--gr)}
+    .pf{display:flex;gap:.65rem;padding-top:.5rem;border-top:1px solid var(--bd)}
+    .pl{display:inline-flex;align-items:center;gap:.38rem;font-size:.8rem;font-weight:600;color:var(--t2);transition:color .2s;min-height:44px}.pl:hover{color:var(--ac)}.pl svg{width:15px;height:15px;flex-shrink:0}
+
+    /* CONTACT */
+    #contact{background:var(--bg2)}
+    .ci{max-width:660px}
+    .ce{display:inline-flex;align-items:center;gap:.7rem;font-size:clamp(1rem,2.2vw,1.3rem);font-weight:600;color:var(--t);padding:.95rem 1.4rem;min-height:44px;background:var(--bgc);border:1px solid var(--bd);border-radius:var(--r);transition:border-color .2s,background .2s;margin-bottom:1.85rem}
+    .ce:hover{border-color:var(--bda);background:var(--bgh)}.ce svg{color:var(--ac);flex-shrink:0}
+    .socs{display:flex;gap:.85rem;flex-wrap:wrap}
+    .soc{display:inline-flex;align-items:center;gap:.55rem;padding:.72rem 1.15rem;min-height:44px;background:var(--bgc);border:1px solid var(--bd);border-radius:10px;font-size:.88rem;font-weight:600;color:var(--t2);transition:color .2s,border-color .2s,background .2s,transform .15s}
+    .soc:hover{color:var(--t);border-color:var(--bda);background:var(--bgh);transform:translateY(-2px)}.soc svg{width:17px;height:17px;flex-shrink:0}
+
+    /* FOOTER */
+    footer{padding:1.75rem clamp(1.25rem,5vw,4rem);border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+    .ft{font-family:var(--m);font-size:.78rem;color:var(--t3)}
+
+    /* REVEAL */
+    .rv{opacity:0;transform:translateY(22px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1)}
+    .rv.vs{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;gap:2.5rem;text-align:center;padding-top:calc(var(--nh) + 2.5rem)}
+      .hd{margin:0 auto 2rem}.ha{justify-content:center}.badge{margin:0 auto 1.5rem}
+      .s7,.s5,.s8,.s4{grid-column:span 12}
+    }
+    @media(max-width:640px){.nv{display:none}.pg{grid-template-columns:1fr}.skg{grid-template-columns:repeat(auto-fill,minmax(95px,1fr))}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Navegación principal">
+  <a href="#" class="nl" aria-label="zerozeid — inicio"><div class="nd" aria-hidden="true"></div>zerozeid</a>
+  <ul class="nv" role="list">
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#contact" class="nc">Contacto</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" aria-label="Presentación">
+    <div class="hl">
+      <div class="badge" aria-label="Disponible para proyectos"><span class="bd2" aria-hidden="true"></span>Disponible para proyectos</div>
+      <h1>zerozeid</h1>
+      <p class="hs">Técnico informático · Dev in Training</p>
+      <p class="hd">Construyo herramientas de automatización en Python, scripts para producción de contenido y pequeñas aplicaciones web. Aprendiendo cada día.</p>
+      <div class="ha">
+        <a href="#projects" class="btn bp">Ver proyectos <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="btn bo">Contacto</a>
+      </div>
     </div>
-  </body>
+    <div class="hr" aria-hidden="true">
+      <div class="term">
+        <div class="th"><span class="td2"></span><span class="td2"></span><span class="td2"></span><span class="tt">zerozeid ~ terminal</span></div>
+        <div class="tb" id="tb"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-label="Sobre mí">
+    <p class="sl rv">01 — sobre mí</p>
+    <div class="bento" role="list">
+      <article class="bc s7 rv" role="listitem">
+        <p class="btext">Soy <strong>zerozeid</strong>, técnico informático y desarrollador en formación afincado en <strong>España</strong>. Me apasiona construir herramientas que resuelvan problemas reales: desde scripts de automatización hasta aplicaciones de escritorio completas.<br><br>Actualmente aprendo desarrollo web mientras profundizo en Python. Comparto el proceso en mi canal de YouTube <strong>Café y Bytes</strong>.</p>
+      </article>
+      <article class="bc s5 rv d1" role="listitem">
+        <div class="sg2">
+          <div><div class="sn">3<span>+</span></div><div class="slb">Proyectos</div></div>
+          <div><div class="sn">7<span>+</span></div><div class="slb">Tecnologías</div></div>
+          <div><div class="sn">1</div><div class="slb">Canal YouTube</div></div>
+          <div><div class="sn">∞</div><div class="slb">Ganas de aprender</div></div>
+        </div>
+      </article>
+      <article class="bc s4 rv d2" role="listitem" style="display:flex;flex-direction:column">
+        <p class="ytl">YouTube</p>
+        <p class="ytc">Café y Bytes</p>
+        <p class="ytd">Tecnología, automatización y programación explicados sin rodeos.</p>
+        <a href="https://www.youtube.com/@cafeybytes" target="_blank" rel="noopener noreferrer" class="yta" aria-label="Ver canal Café y Bytes en YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Ver canal
+        </a>
+      </article>
+      <article class="bc s8 gc rv d3" role="listitem">
+        <p class="nwl">Construyendo ahora</p>
+        <p class="nwt">AutoScripts <span>Suite</span></p>
+        <p class="nws">Python · TTS · FFmpeg · CustomTkinter</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" aria-labelledby="sh">
+    <p class="sl rv">02 — stack</p>
+    <h2 class="st rv" id="sh">Tecnologías que uso</h2>
+    <div class="skg" id="skg" role="list" aria-label="Stack tecnológico"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" aria-labelledby="ph">
+    <p class="sl rv">03 — proyectos</p>
+    <h2 class="st rv" id="ph">Lo que he construido</h2>
+    <p class="sd rv">Proyectos propios que resuelven problemas reales o exploran ideas que me interesan.</p>
+    <div class="pg" id="pg" role="list" aria-label="Proyectos"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="ch">
+    <div class="ci">
+      <p class="sl rv">04 — contacto</p>
+      <h2 class="st rv" id="ch">Hablemos</h2>
+      <p class="sd rv">¿Tienes un proyecto, una pregunta o simplemente quieres saludar?</p>
+      <a href="mailto:zerozeid@duck.com" class="ce rv" aria-label="Enviar email a zerozeid@duck.com">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        zerozeid@duck.com
+      </a>
+      <div class="socs rv d1">
+        <a href="https://github.com/zeroami" target="_blank" rel="noopener noreferrer" class="soc" aria-label="GitHub de zerozeid">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>GitHub
+        </a>
+        <a href="https://www.youtube.com/@cafeybytes" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Canal YouTube Café y Bytes">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube
+        </a>
+        <a href="https://t.me/ImZerozeid" target="_blank" rel="noopener noreferrer" class="soc" aria-label="Telegram de zerozeid">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p class="ft">© 2026 zerozeid</p>
+  <p class="ft">Hecho con propósito</p>
+</footer>
+
+<script>
+  // NAV scroll
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('sc',scrollY>40)},{passive:true});
+
+  // TERMINAL
+  const ls=['<span class="tp">❯</span> <span class="tc2">python autoscripts.py</span>','<span class="ti">  Cargando pipeline...</span>','<span class="tok">  ✓ Motor TTS listo</span>','<span class="ti">  Generando parte 01/08...</span>','<span class="tok">  ✓ Audio → AUDIO_completo.wav</span>','','<span class="tp">❯</span> <span class="tc2">python meta_ai.py --batch 20</span>','<span class="ti">  Iniciando sesión del navegador...</span>','<span class="ti">  Cola: 20 prompts cargados</span>','<span class="tok">  ✓ Respuestas extraídas</span>','','<span class="tp">❯</span> <span class="tcm"># zerozeid.py — always learning</span>'];
+  const tb=document.getElementById('tb');let li=0;
+  function nL(){
+    if(li>=ls.length){const c=document.createElement('span');c.className='cur';tb.appendChild(c);return;}
+    const d=document.createElement('div');tb.appendChild(d);
+    if(!ls[li]){li++;setTimeout(nL,70);return;}
+    d.innerHTML=ls[li];li++;setTimeout(nL,li<5?190:210);
+  }
+  setTimeout(nL,700);
+
+  // REVEAL
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vs');obs.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -36px 0px'});
+  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+  // STACK
+  const sk=[{n:'Python',c:'#3776AB',b:'rgba(55,118,171,.15)'},{n:'Automation',c:'#f59e0b',b:'rgba(245,158,11,.12)'},{n:'Flask',c:'#94a3b8',b:'rgba(148,163,184,.1)'},{n:'SQLite',c:'#6ba2c1',b:'rgba(107,162,193,.15)'},{n:'Selenium',c:'#43b02a',b:'rgba(67,176,42,.12)'},{n:'HTML',c:'#e34c26',b:'rgba(227,76,38,.12)'},{n:'CSS',c:'#264de4',b:'rgba(38,77,228,.12)'},{n:'JavaScript',c:'#f7df1e',b:'rgba(247,223,30,.1)'},{n:'CustomTkinter',c:'#818cf8',b:'rgba(129,140,248,.12)'},{n:'FFmpeg',c:'#00a000',b:'rgba(0,160,0,.1)'},{n:'Git',c:'#f05032',b:'rgba(240,80,50,.12)'},{n:'Linux',c:'#fcc624',b:'rgba(252,198,36,.1)'}];
+  const sg=document.getElementById('skg');
+  sk.forEach((s,i)=>{const el=document.createElement('div');el.className='sk rv'+(i%3===1?' d1':i%3===2?' d2':'');el.setAttribute('role','listitem');el.innerHTML=`<div class="skd" style="background:${s.b};color:${s.c}">${s.n.slice(0,2)}</div><span>${s.n}</span>`;sg.appendChild(el);obs.observe(el);});
+
+  // PROJECTS
+  const pjs=[{num:'01',title:'AutoScripts Suite',desc:'App de escritorio (CustomTkinter) que automatiza el pipeline completo para YouTube: guión con IA, clonación de voz TTS, subtítulos con WhisperX, ensamblado con FFmpeg y metadatos SEO.',tags:[{l:'Python',c:'ta'},{l:'TTS',c:'ta'},{l:'FFmpeg',c:'tc3'},{l:'SQLite',c:'tg'}],href:'https://github.com/zeroami'},{num:'02',title:'Meta AI Automation',desc:'Toolkit en Python que automatiza interacciones con Meta AI mediante Selenium. Gestiona sesiones, inyecta prompts, extrae respuestas y procesa lotes a escala sin intervención manual.',tags:[{l:'Python',c:'ta'},{l:'Selenium',c:'tc3'},{l:'Automation',c:'tg'}],href:'https://github.com/zeroami'},{num:'03',title:'Landing Pages',desc:'Colección de landing pages personalizadas codificadas a mano con HTML, CSS y JavaScript puro. Sin frameworks, sin dependencias. Carga rápida y llamadas a la acción claras.',tags:[{l:'HTML',c:'ta'},{l:'CSS',c:'tc3'},{l:'JavaScript',c:'tg'}],href:'https://github.com/zeroami'}];
+  const pg=document.getElementById('pg');
+  const ghI=`<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>`;
+  pjs.forEach((p,i)=>{const el=document.createElement('article');el.className='pj rv'+(i===1?' d1':i===2?' d2':'');el.setAttribute('role','listitem');el.innerHTML=`<span class="pn">${p.num}</span><h3 class="pt">${p.title}</h3><p class="pd2">${p.desc}</p><div class="tags">${p.tags.map(t=>`<span class="tag ${t.c}">${t.l}</span>`).join('')}</div><div class="pf"><a href="${p.href}" target="_blank" rel="noopener noreferrer" class="pl" aria-label="Ver código de ${p.title} en GitHub">${ghI} Ver código</a></div>`;pg.appendChild(el);obs.observe(el);});
+</script>
+</body>
 </html>
