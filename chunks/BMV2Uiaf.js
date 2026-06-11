@@ -1,0 +1,1 @@
+import{t,a,b as i}from"./CRgOd3Si.js";const n=[{title:"AutoScripts Suite",slug:"streakon",thumbnail:t,description:"YouTube content automation"},{title:"Meta AI Automation",slug:"cubewar",thumbnail:a,description:"AI workflow automation"},{title:"Landing Pages",slug:"quibbo",thumbnail:i,description:"Custom landing pages"}];export{n as default};
