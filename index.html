@@ -73,7 +73,16 @@
 
     /* SECTIONS */
     section{padding:5.5rem clamp(1.25rem,5vw,4rem)}
-    .sl{font-family:var(--m);font-size:.77rem;font-weight:500;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem}
+    .sl{font-family:var(--m);font-size:.77rem;font-weight:500;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem;display:flex;align-items:center;gap:.65rem}
+    .sl::before{content:'';width:5px;height:5px;background:var(--ac);border-radius:50%;flex-shrink:0;box-shadow:0 0 8px rgba(129,140,248,.8),0 0 16px rgba(129,140,248,.3)}
+    .sl::after{content:'';height:1px;flex:1;background:linear-gradient(90deg,var(--bda),transparent);max-width:160px}
+
+    /* SECTION DIVIDERS */
+    .sdiv{display:flex;align-items:center;padding:0 clamp(1.25rem,5vw,4rem);overflow:hidden}
+    .sdiv::before,.sdiv::after{content:'';flex:1;height:1px}
+    .sdiv::before{background:linear-gradient(to right,transparent,rgba(129,140,248,.2))}
+    .sdiv::after{background:linear-gradient(to left,transparent,rgba(129,140,248,.2))}
+    .sdiv-dot{width:4px;height:4px;background:var(--ac);border-radius:50%;flex-shrink:0;margin:0 .9rem;box-shadow:0 0 12px rgba(129,140,248,.7),0 0 24px rgba(129,140,248,.25)}
     .st{font-size:clamp(1.85rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:1.1rem}
     .sd{font-size:1.02rem;color:var(--t2);max-width:540px;line-height:1.72;margin-bottom:2.75rem}
 
@@ -96,7 +105,7 @@
     .gc{position:relative;overflow:hidden}.gc::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,var(--acd) 0%,transparent 60%);pointer-events:none}
 
     /* STACK */
-    #stack{background:var(--bg2)}
+    #stack{background:linear-gradient(to bottom,var(--bg) 0%,var(--bg2) 7%,var(--bg2) 93%,var(--bg) 100%)}
     .skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.7rem;max-width:880px}
     .sk{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;padding:1.15rem .9rem;background:var(--bgc);border:1px solid var(--bd);border-radius:var(--r);font-size:.8rem;font-weight:600;color:var(--t2);transition:border-color .2s,background .2s,color .2s,transform .2s;min-height:44px;cursor:default;text-align:center}
     .sk:hover{border-color:var(--bda);background:var(--bgh);color:var(--t);transform:translateY(-3px)}
@@ -119,7 +128,7 @@
     .pl{display:inline-flex;align-items:center;gap:.38rem;font-size:.8rem;font-weight:600;color:var(--t2);transition:color .2s;min-height:44px}.pl:hover{color:var(--ac)}.pl svg{width:15px;height:15px;flex-shrink:0}
 
     /* CONTACT */
-    #contact{background:var(--bg2)}
+    #contact{background:linear-gradient(to bottom,var(--bg) 0%,var(--bg2) 8%,var(--bg2) 100%)}
     .ci{max-width:660px}
     .ce{display:inline-flex;align-items:center;gap:.7rem;font-size:clamp(1rem,2.2vw,1.3rem);font-weight:600;color:var(--t);padding:.95rem 1.4rem;min-height:44px;background:var(--bgc);border:1px solid var(--bd);border-radius:var(--r);transition:border-color .2s,background .2s;margin-bottom:1.85rem}
     .ce:hover{border-color:var(--bda);background:var(--bgh)}.ce svg{color:var(--ac);flex-shrink:0}
@@ -189,6 +198,8 @@
     </div>
   </section>
 
+  <div class="sdiv" aria-hidden="true"><span class="sdiv-dot"></span></div>
+
   <!-- ABOUT -->
   <section id="about" aria-label="Sobre mí">
     <p class="sl rv-l">01 — sobre mí</p>
@@ -221,12 +232,16 @@
     </div>
   </section>
 
+  <div class="sdiv" aria-hidden="true"><span class="sdiv-dot"></span></div>
+
   <!-- STACK -->
   <section id="stack" aria-labelledby="sh">
     <p class="sl rv-l">02 — stack</p>
     <h2 class="st rv-l d1" id="sh">Tecnologías que uso</h2>
     <div class="skg" id="skg" role="list" aria-label="Stack tecnológico"></div>
   </section>
+
+  <div class="sdiv" aria-hidden="true"><span class="sdiv-dot"></span></div>
 
   <!-- PROJECTS -->
   <section id="projects" aria-labelledby="ph">
@@ -235,6 +250,8 @@
     <p class="sd rv d2">Proyectos propios que resuelven problemas reales o exploran ideas que me interesan.</p>
     <div class="pg" id="pg" role="list" aria-label="Proyectos"></div>
   </section>
+
+  <div class="sdiv" aria-hidden="true"><span class="sdiv-dot"></span></div>
 
   <!-- CONTACT -->
   <section id="contact" aria-labelledby="ch">
