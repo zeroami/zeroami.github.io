@@ -1,664 +1,1056 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zerozeid | Desarrollador en Formación</title>
-    <meta name="description" content="Portfolio de zerozeid - Técnico informático en Sistemas Microinformáticos y Redes (SMR), estudiante de DAM y creador de Café y Bytes en YouTube.">
-    <!-- FontAwesome & Devicon Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zerozeid — Desarrollador en Formación</title>
+  <meta name="description" content="Portfolio de zerozeid — Técnico SMR, desarrollador Python y creador de Café y Bytes en YouTube.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    
+    :root {
+      --bg:          #f5efe6;
+      --bg-100:      #ede7db;
+      --bg-200:      #e5ddd0;
+      --text:        #2d2a24;
+      --text-2:      #5f5646;
+      --accent:      #ff8400;
+      --border:      rgba(45,42,36,.12);
+      --border-s:    rgba(45,42,36,.25);
+      --sans:        'Urbanist', sans-serif;
+      --mono:        'JetBrains Mono', monospace;
+      --ease:        cubic-bezier(.6,0,.25,1);
+      --hdr:         72px;
+      --outer:       clamp(20px,4vw,48px);
+      --hero-fs:     clamp(60px,11vw,120px);
+      --display-fs:  clamp(34px,5.5vw,68px);
+    }
+    
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{background:var(--bg);color:var(--text);font-family:var(--sans);
+         scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{min-height:100vh;overflow-x:hidden}
+    body.loading{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    ul{list-style:none}
+    button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+    
+    .pre{
+      position:fixed;inset:0;background:var(--bg);
+      display:flex;align-items:center;justify-content:center;
+      z-index:9999;transition:opacity .6s var(--ease),visibility .6s;
+    }
+    .pre.gone{opacity:0;visibility:hidden;pointer-events:none}
+    .pre-inner{display:flex;flex-direction:column;align-items:center;gap:20px}
+    .pre-word{
+      font-weight:900;font-size:52px;letter-spacing:-.03em;
+      position:relative;overflow:hidden;color:var(--text);
+    }
+    .pre-word::after{
+      content:attr(data-t);position:absolute;inset:0;
+      color:var(--accent);clip-path:inset(100% 0 0 0);
+      animation:pfill 1.3s var(--ease) forwards .1s;
+    }
+    @keyframes pfill{to{clip-path:inset(0% 0 0 0)}}
+    .pre-line{
+      width:100px;height:1px;background:var(--border-s);
+      position:relative;overflow:hidden;
+    }
+    .pre-line::after{
+      content:'';position:absolute;top:0;left:-100%;
+      width:100%;height:100%;background:var(--text);
+      animation:pline 1.1s var(--ease) forwards .2s;
+    }
+    @keyframes pline{to{left:0}}
+
+    
+    .hdr{
+      position:fixed;top:0;left:50%;transform:translateX(-50%);
+      width:100%;max-width:1600px;padding:0 var(--outer);
+      height:var(--hdr);display:flex;align-items:center;
+      justify-content:space-between;z-index:100;pointer-events:none;
+    }
+    .hdr-logo{
+      font-weight:900;font-size:19px;letter-spacing:-.02em;
+      opacity:0;transition:opacity .35s ease;pointer-events:auto;cursor:pointer;
+    }
+    .hdr-logo.on{opacity:1}
+    .hdr-nav{
+      display:flex;gap:32px;pointer-events:auto;
+      opacity:0;transition:opacity .35s ease .1s;
+    }
+    .hdr-nav.on{opacity:1}
+    .hdr-nav a{
+      font-size:13px;font-weight:500;letter-spacing:.02em;
+      color:var(--text-2);transition:color .2s;
+    }
+    .hdr-nav a:hover{color:var(--text)}
+    .hdr-cta{
+      pointer-events:auto;padding:8px 18px;
+      border:1px solid var(--text);border-radius:100px;
+      font-size:13px;font-weight:700;letter-spacing:.02em;
+      opacity:0;transition:opacity .35s ease .2s,background .2s,color .2s;
+    }
+    .hdr-cta.on{opacity:1}
+    .hdr-cta:hover{background:var(--text);color:var(--bg)}
+    @media(max-width:768px){.hdr-nav{display:none}}
+
+    
+    .wrap{width:100%;max-width:1600px;margin:0 auto;padding:0 var(--outer)}
+
+    
+    .hero{
+      min-height:100vh;display:flex;flex-direction:column;
+      justify-content:flex-end;padding-bottom:clamp(40px,6vh,72px);
+      padding-top:calc(var(--hdr) + 32px);
+    }
+    .hero-top{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:clamp(48px,8vh,96px);
+    }
+    .hero-pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 14px;border:1px solid var(--border-s);
+      border-radius:100px;font-size:11px;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);
+    }
+    .hero-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .hero-scroll{
+      font-size:11px;color:var(--text-2);letter-spacing:.08em;
+      text-transform:uppercase;display:flex;align-items:center;gap:8px;
+    }
+    .hero-scroll::after{content:'';width:40px;height:1px;background:currentColor}
+    .hero-name{
+      font-size:var(--hero-fs);font-weight:900;
+      line-height:.95;letter-spacing:-.04em;
+      margin-bottom:clamp(28px,4vh,48px);
+    }
+    .hero-name em{font-style:normal;color:var(--accent)}
+    .hero-btm{
+      display:flex;align-items:flex-end;
+      justify-content:space-between;gap:24px;
+    }
+    .hero-tag{
+      font-size:clamp(15px,1.8vw,21px);font-weight:400;
+      color:var(--text-2);max-width:440px;line-height:1.6;
+    }
+    .hero-tag strong{color:var(--text);font-weight:700}
+    .hero-links{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+    .hero-links a{
+      display:flex;align-items:center;gap:7px;font-size:13px;
+      font-weight:500;color:var(--text-2);transition:color .2s;
+    }
+    .hero-links a:hover{color:var(--text)}
+    @media(max-width:600px){
+      .hero-btm{flex-direction:column;align-items:flex-start}
+      .hero-links{flex-direction:row;flex-wrap:wrap;align-items:flex-start}
+    }
+
+    
+    .sec{padding:clamp(72px,10vw,130px) 0;border-top:1px solid var(--border)}
+    .sec-num{
+      font-size:11px;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--text-2);
+      margin-bottom:28px;display:flex;align-items:center;gap:10px;
+    }
+    .sec-num::before{content:attr(data-n);color:var(--accent)}
+    .sec-h{
+      font-size:var(--display-fs);font-weight:900;
+      letter-spacing:-.025em;line-height:1.05;
+      margin-bottom:clamp(36px,5vw,60px);
+    }
+
+    
+    .about-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:clamp(32px,5vw,80px);align-items:start;
+    }
+    @media(max-width:880px){.about-grid{grid-template-columns:1fr}}
+    .about-p{
+      font-size:clamp(14px,1.4vw,17px);line-height:1.75;
+      color:var(--text-2);margin-bottom:16px;
+    }
+    .about-p strong{color:var(--text);font-weight:700}
+    .about-p a{color:var(--text);font-weight:600;
+               border-bottom:1px solid var(--accent);padding-bottom:1px}
+
+    
+    .term{
+      background:var(--text);border-radius:16px;
+      overflow:hidden;margin-top:28px;
+    }
+    .term-bar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:11px 16px;background:rgba(255,255,255,.05);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .term-dots{display:flex;gap:6px}
+    .term-dot{width:10px;height:10px;border-radius:50%}
+    .td-r{background:#ff5f57}.td-y{background:#febc2e}.td-g{background:#28c840}
+    .term-ttl{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.04em}
+    .term-body{
+      padding:14px 16px;max-height:268px;overflow-y:auto;
+      font-family:var(--mono);
+      scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent;
+    }
+    .t-line{font-size:12px;line-height:1.85;color:rgba(255,255,255,.7)}
+    .t-row{display:flex;align-items:center;gap:8px;margin-top:2px}
+    .t-prompt{color:var(--accent);font-size:12px;white-space:nowrap;flex-shrink:0;font-family:var(--mono)}
+    .t-in{
+      background:none;border:none;outline:none;width:100%;
+      font-family:var(--mono);font-size:12px;
+      color:rgba(255,255,255,.9);caret-color:var(--accent);
+    }
+    .term-btns{
+      display:flex;flex-wrap:wrap;gap:6px;
+      padding:9px 16px 12px;border-top:1px solid rgba(255,255,255,.06);
+    }
+    .t-btn{
+      padding:3px 10px;border:1px solid rgba(255,255,255,.14);
+      border-radius:100px;font-family:var(--mono);font-size:11px;
+      color:rgba(255,255,255,.55);transition:border-color .2s,color .2s;
+    }
+    .t-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+    
+    .tl-hdr{
+      font-size:11px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--text-2);margin-bottom:18px;
+    }
+    .tl{display:flex;flex-direction:column;gap:12px}
+    .tl-item{
+      padding:16px 18px;border:1px solid var(--border);
+      border-radius:12px;background:var(--bg-100);
+      transition:border-color .2s,transform .25s var(--ease);
+    }
+    .tl-item:hover{border-color:var(--accent);transform:translateX(6px)}
+    .tl-date{
+      font-size:10px;font-weight:700;color:var(--accent);
+      letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px;
+    }
+    .tl-name{font-size:15px;font-weight:700;margin-bottom:5px}
+    .tl-desc{font-size:12px;color:var(--text-2);line-height:1.6}
+
+    
+    .sk-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:20px;
+    }
+    .sk-card{
+      border:1px solid var(--border);border-radius:18px;
+      padding:24px;background:var(--bg-100);
+      transition:border-color .2s;
+    }
+    .sk-card:hover{border-color:var(--accent)}
+    .sk-ttl{
+      display:flex;align-items:center;gap:9px;
+      font-size:17px;font-weight:700;margin-bottom:18px;
+    }
+    .sk-ttl i{font-size:19px}
+    .sk-row{margin-bottom:13px}
+    .sk-head{
+      display:flex;justify-content:space-between;
+      align-items:center;margin-bottom:5px;
+    }
+    .sk-name{
+      font-size:12px;font-weight:600;display:flex;
+      align-items:center;gap:5px;
+    }
+    .sk-name i{font-size:11px;color:var(--text-2)}
+    .badge{
+      font-size:9px;font-weight:700;letter-spacing:.06em;
+      text-transform:uppercase;padding:2px 7px;border-radius:100px;
+    }
+    .b-av{background:rgba(255,132,0,.14);color:var(--accent)}
+    .b-pr{background:rgba(45,42,36,.08);color:var(--text-2)}
+    .b-ex{background:rgba(52,191,255,.12);color:#0086bb}
+    .b-do{background:rgba(40,200,64,.13);color:#1a8c2c}
+    .sk-bar{height:3px;background:var(--border-s);border-radius:100px;overflow:hidden}
+    .sk-fill{
+      height:100%;background:var(--accent);border-radius:100px;
+      width:0;transition:width 1.2s var(--ease);
+    }
+
+    
+    .proj-list{display:flex;flex-direction:column}
+    .proj{
+      display:flex;align-items:flex-start;justify-content:space-between;
+      padding:clamp(22px,3vw,36px) 0;border-bottom:1px solid var(--border);
+      gap:20px;transition:padding-left .3s var(--ease);
+    }
+    .proj:first-child{border-top:1px solid var(--border)}
+    .proj:hover{padding-left:18px}
+    .proj-n{
+      font-size:11px;font-weight:700;color:var(--text-2);
+      letter-spacing:.05em;margin-top:5px;min-width:24px;
+    }
+    .proj-main{flex:1}
+    .proj-type{
+      font-size:10px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--text-2);margin-bottom:5px;
+    }
+    .proj-title{
+      font-size:clamp(20px,2.8vw,34px);font-weight:900;
+      letter-spacing:-.01em;margin-bottom:10px;
+      transition:color .2s;
+    }
+    .proj:hover .proj-title{color:var(--accent)}
+    .proj-desc{
+      font-size:13px;color:var(--text-2);line-height:1.65;
+      max-width:540px;margin-bottom:10px;
+    }
+    .proj-tags{display:flex;flex-wrap:wrap;gap:5px}
+    .proj-tag{
+      font-size:10px;font-weight:600;padding:2px 9px;
+      border:1px solid var(--border-s);border-radius:100px;
+      color:var(--text-2);letter-spacing:.02em;
+    }
+    .proj-right{
+      display:flex;flex-direction:column;align-items:flex-end;
+      gap:10px;min-width:110px;
+    }
+    .proj-st{
+      font-size:10px;font-weight:700;letter-spacing:.04em;
+      padding:4px 11px;border-radius:100px;
+    }
+    .st-on{background:rgba(40,200,64,.12);color:#1a8c2c}
+    .st-wip{background:rgba(255,132,0,.12);color:var(--accent)}
+    .st-pl{background:rgba(45,42,36,.08);color:var(--text-2)}
+    .proj-arrow{
+      font-size:18px;color:var(--text-2);
+      transition:transform .2s,color .2s;
+    }
+    .proj:hover .proj-arrow{color:var(--accent);transform:translate(4px,-4px)}
+    @media(max-width:600px){
+      .proj{flex-direction:column}
+      .proj-right{flex-direction:row;align-items:center}
+    }
+
+    
+    .yt-hdr{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:clamp(28px,4vw,48px);flex-wrap:wrap;gap:16px;
+    }
+    .yt-sub{
+      display:inline-flex;align-items:center;gap:7px;
+      padding:9px 20px;background:#ff0000;color:#fff;
+      border-radius:100px;font-size:13px;font-weight:700;
+      transition:opacity .2s;
+    }
+    .yt-sub:hover{opacity:.85}
+    .yt-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:20px;
+    }
+    .yt-card{
+      border:1px solid var(--border);border-radius:18px;
+      overflow:hidden;background:var(--bg-100);display:block;
+      transition:border-color .2s,transform .25s var(--ease);
+    }
+    .yt-card:hover{border-color:#ff0000;transform:translateY(-5px)}
+    .yt-thumb{
+      aspect-ratio:16/9;background:var(--bg-200);
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .yt-thumb-ico{font-size:34px;color:var(--text-2);opacity:.35}
+    .yt-dur{
+      position:absolute;bottom:8px;right:8px;
+      background:rgba(0,0,0,.72);color:#fff;
+      font-size:10px;font-weight:700;padding:2px 6px;
+      border-radius:4px;font-family:var(--mono);
+    }
+    .yt-info{padding:16px}
+    .yt-vid-ttl{font-size:14px;font-weight:700;line-height:1.4;margin-bottom:7px}
+    .yt-vid-desc{font-size:11px;color:var(--text-2);line-height:1.55;margin-bottom:10px}
+    .yt-play{display:flex;align-items:center;gap:5px;
+             font-size:11px;font-weight:700;color:#ff0000}
+
+    
+    .ct-wrap{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:clamp(32px,6vw,96px);align-items:start;
+    }
+    @media(max-width:768px){.ct-wrap{grid-template-columns:1fr}}
+    .ct-intro{
+      font-size:clamp(30px,4.5vw,54px);font-weight:900;
+      letter-spacing:-.025em;line-height:1.1;
+    }
+    .ct-intro em{font-style:normal;color:var(--accent)}
+    .ct-sub{
+      margin-top:16px;font-size:15px;color:var(--text-2);line-height:1.65;
+    }
+    .ct-items{display:flex;flex-direction:column;gap:12px}
+    .ct-item{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 22px;border:1px solid var(--border);
+      border-radius:16px;background:var(--bg-100);
+      transition:border-color .2s,transform .25s var(--ease);
+    }
+    .ct-item:hover{border-color:var(--accent);transform:translateX(7px)}
+    .ct-left{display:flex;align-items:center;gap:16px}
+    .ct-ico{font-size:18px;color:var(--text-2);width:26px;text-align:center}
+    .ct-lbl{
+      font-size:10px;font-weight:700;letter-spacing:.07em;
+      text-transform:uppercase;color:var(--text-2);
+    }
+    .ct-val{font-size:14px;font-weight:600;color:var(--text)}
+    .ct-arr{
+      font-size:15px;color:var(--text-2);
+      transition:transform .2s,color .2s;
+    }
+    .ct-item:hover .ct-arr{color:var(--accent);transform:translateX(4px)}
+
+    
+    .ftr{
+      padding:clamp(28px,3vw,48px) 0;border-top:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:12px;
+    }
+    .ftr-copy{font-size:12px;color:var(--text-2)}
+    .ftr-copy a{color:var(--accent)}
+    .ftr-quote{
+      font-size:11px;color:var(--text-2);
+      font-style:italic;opacity:.55;text-align:right;
+    }
+
+    
+    .rv{
+      opacity:0;transform:translateY(22px);
+      transition:opacity .7s var(--ease),transform .7s var(--ease);
+    }
+    .rv.in{opacity:1;transform:none}
+    .rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
+    .rv3{transition-delay:.3s}.rv4{transition-delay:.4s}
+  </style>
 </head>
-<body>
-    <!-- Ambient Glow Blobs -->
-    <div class="glow-blob glow-blob-1"></div>
-    <div class="glow-blob glow-blob-2"></div>
-    <div class="glow-blob glow-blob-3"></div>
+<body class="loading">
 
-    <div class="container">
-        <!-- HEADER -->
-        <header id="header">
-            <div class="profile-avatar-container">
-                <div class="profile-pic">
-                    <i class="fas fa-code"></i>
-                </div>
+<div class="pre" id="pre">
+  <div class="pre-inner">
+    <div class="pre-word" data-t="zerozeid">zerozeid</div>
+    <div class="pre-line"></div>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="hdr-logo" id="hl" onclick="scrollTo({top:0,behavior:'smooth'})">zerozeid</div>
+  <nav class="hdr-nav" id="hn">
+    <a href="#sobre-mi">Sobre Mí</a>
+    <a href="#habilidades">Skills</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#youtube">YouTube</a>
+  </nav>
+  <a href="mailto:zerozeid@duck.com" class="hdr-cta" id="hc">Contactar →</a>
+</header>
+
+<main>
+
+  
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-top">
+        <span class="hero-pill">
+          <span class="hero-pill-dot"></span>
+          Disponible para proyectos
+        </span>
+        <span class="hero-scroll">Scroll</span>
+      </div>
+
+      <h1 class="hero-name">zeroz<em>e</em>id</h1>
+
+      <div class="hero-btm">
+        <p class="hero-tag">
+          Técnico informático en SMR, desarrollador <strong>Python</strong> en formación
+          y creador de <strong>Café y Bytes</strong> en YouTube.
+        </p>
+        <div class="hero-links">
+          <a href="https://www.youtube.com/@cafeybytes" target="_blank">
+            <i class="fab fa-youtube"></i> @cafeybytes
+          </a>
+          <a href="https://github.com/zeroami" target="_blank">
+            <i class="fab fa-github"></i> @zeroami
+          </a>
+          <a href="https://t.me/amzzdev" target="_blank">
+            <i class="fab fa-telegram-plane"></i> @amzzdev
+          </a>
+          <a href="mailto:zerozeid@duck.com">
+            <i class="fas fa-envelope"></i> zerozeid@duck.com
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  
+  <div class="wrap">
+    <section class="sec" id="sobre-mi">
+      <p class="sec-num" data-n="01">Sobre Mí</p>
+      <div class="about-grid">
+
+        
+        <div>
+          <h2 class="sec-h rv">Aprendiendo,<br>construyendo,<br>compartiendo.</h2>
+          <p class="about-p rv rv1">
+            Soy <strong>zerozeid</strong>, apasionado de la informática con título de
+            <strong>Grado Medio en Sistemas Microinformáticos y Redes (SMR)</strong>.
+          </p>
+          <p class="about-p rv rv2">
+            Me dedico a dominar <strong>Python</strong> y el diseño de
+            <strong>Bases de datos</strong> robustas como base para automatización y backend.
+          </p>
+          <p class="about-p rv rv3">
+            Mi meta es especializarme en desarrollo backend, continuando con
+            <strong>DAM</strong> y después <strong>ASIR</strong> para un perfil Fullstack/DevOps.
+          </p>
+          <p class="about-p rv rv4">
+            En <a href="https://www.youtube.com/@cafeybytes" target="_blank">@cafeybytes</a>
+            comparto tutoriales prácticos, automatizaciones y mi proceso de aprendizaje.
+          </p>
+
+          
+          <div class="term rv" style="margin-top:28px">
+            <div class="term-bar">
+              <div class="term-dots">
+                <span class="term-dot td-r"></span>
+                <span class="term-dot td-y"></span>
+                <span class="term-dot td-g"></span>
+              </div>
+              <span class="term-ttl">zerozeid@cafeybytes: ~</span>
+              <span></span>
             </div>
-            <div class="name-container">
-                <h1>zerozeid</h1>
-                <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExb285aGxxemZ6M2YzZXhtYWFubXExbXhta21nZmNtbzZ4b2s5aGlndiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dtawoyXRM2CxvdzdkP/giphy.gif" alt="Terminal Typing" class="name-gif">
+            <div class="term-body" id="ts">
+              <div class="t-line" style="color:rgba(255,255,255,.38);margin-bottom:8px">
+                Terminal lista. Escribe <span style="color:#ff8400">help</span> para ver comandos disponibles.
+              </div>
+              <div class="t-row">
+                <span class="t-prompt">zerozeid@cafeybytes:~$</span>
+                <input type="text" class="t-in" id="ti" placeholder="escribe un comando…" autocomplete="off">
+              </div>
             </div>
-            <div class="tagline">Técnico informático | <span>Desarrollador en Formación</span></div>
-            <div class="social-links">
-                <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="social-link" id="youtube-social">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
-                <a href="https://github.com/zeroami" target="_blank" class="social-link" id="github-social">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="mailto:zerozeid@duck.com" class="social-link" id="email-social">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-                <a href="https://t.me/amzzdev" target="_blank" class="social-link" id="telegram-social">
-                    <i class="fab fa-telegram-plane"></i> Telegram
-                </a>
+            <div class="term-btns">
+              <button class="t-btn" data-c="neofetch">neofetch</button>
+              <button class="t-btn" data-c="skills">skills</button>
+              <button class="t-btn" data-c="projects">projects</button>
+              <button class="t-btn" data-c="about">about</button>
+              <button class="t-btn" data-c="clear">clear</button>
             </div>
-        </header>
+          </div>
+        </div>
 
-        <!-- SOBRE MÍ -->
-        <section class="section" id="sobre-mi">
-            <h2 class="section-title"><i class="fas fa-user-astronaut"></i> Sobre Mí</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Soy <strong>zerozeid</strong>, un apasionado de la informática en formación continua con un título de <strong>Grado Medio en Sistemas Microinformáticos y Redes (SMR)</strong>.
-                    </p>
-                    <p>
-                        Actualmente me dedico a dominar <strong>Python</strong> y el diseño de <strong>Bases de datos</strong> robustas, sentando bases sólidas para automatización y backend.
-                    </p>
-                    <p>
-                        Mi meta a corto plazo es especializarme en desarrollo **backend** y administración de sistemas en red. Para lograrlo, tengo planificado continuar mis estudios académicos en el ciclo superior de **Desarrollo de Aplicaciones Multiplataforma (DAM)**.
-                    </p>
-                    <p>
-                        En mi canal de YouTube, <a href="https://www.youtube.com/@cafeybytes" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">@cafeybytes</a>, comparto tutoriales prácticos, automatizaciones, scripts y todo mi proceso de aprendizaje con una comunidad que comparte la misma pasión.
-                    </p>
-
-                    <!-- Terminal Interactive Widget -->
-                    <div class="terminal-wrapper">
-                        <div class="terminal-header">
-                            <div class="terminal-buttons">
-                                <span class="terminal-btn btn-close"></span>
-                                <span class="terminal-btn btn-minimize"></span>
-                                <span class="terminal-btn btn-maximize"></span>
-                            </div>
-                            <div class="terminal-title">zerozeid@cafeybytes: ~</div>
-                            <div></div>
-                        </div>
-                        <div class="terminal-body" id="terminal-screen">
-                            <div class="terminal-output">Terminal interactiva inicializada.<br>Escribe <span style="color: var(--accent)">help</span> para ver los comandos disponibles o presiona los botones de abajo.</div>
-                            <div class="terminal-input-line">
-                                <span class="terminal-prompt">zerozeid@cafeybytes:~$</span>
-                                <input type="text" class="terminal-typing-box" id="terminal-input" placeholder="Escribe un comando..." autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="terminal-quick-actions">
-                            <span class="terminal-quick-label">Accesos rápidos:</span>
-                            <button class="quick-action-btn" data-cmd="neofetch">neofetch</button>
-                            <button class="quick-action-btn" data-cmd="skills">skills</button>
-                            <button class="quick-action-btn" data-cmd="projects">projects</button>
-                            <button class="quick-action-btn" data-cmd="about">about</button>
-                            <button class="quick-action-btn" data-cmd="clear">clear</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline">
-                    <h3 class="timeline-title-text"><i class="fas fa-route" style="color: var(--primary); margin-right: 0.5rem;"></i>Mi Trayectoria</h3>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2024 - 2025</div>
-                        <div class="timeline-title-text">Técnico en SMR</div>
-                        <div class="timeline-content">Sistemas Microinformáticos y Redes. Especialización práctica en hardware, configuración de redes locales y administración de servidores básicos.</div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2025 - 2026</div>
-                        <div class="timeline-title-text">Especialización Autodidacta</div>
-                        <div class="timeline-content">Profundización en programación estructurada y POO con Python, APIs REST (Flask, Django), Web Scraping avanzado y bases de datos relacionales y NoSQL.</div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">2026 - 2027 (Planificado)</div>
-                        <div class="timeline-title-text">Grado Superior DAM</div>
-                        <div class="timeline-content">Desarrollo de Aplicaciones Multiplataforma. Consolidación de src de ingeniería de software, interfaces visuales multiplataforma y desarrollo ágil.</div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-date">📌 Futuro Profesional</div>
-                        <div class="timeline-title-text">Administración ASIR</div>
-                        <div class="timeline-content">Mi meta final es complementar el título de DAM con el Grado Superior en ASIR (Administración de Sistemas Informáticos en Red) para lograr un perfil Fullstack/DevOps sumamente competitivo.</div>
-                    </div>
-                </div>
+        
+        <div>
+          <p class="tl-hdr">Mi Trayectoria</p>
+          <div class="tl">
+            <div class="tl-item rv rv1">
+              <div class="tl-date">2024 – 2025</div>
+              <div class="tl-name">Técnico en SMR</div>
+              <div class="tl-desc">Sistemas Microinformáticos y Redes. Hardware, redes locales y administración de servidores.</div>
             </div>
-        </section>
-
-        <!-- HABILIDADES -->
-        <section class="section" id="habilidades">
-            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Habilidades en desarrollo</h2>
-            <div class="skills-container">
-                <!-- PYTHON -->
-                <div class="skill-category">
-                    <h3 class="skill-title"><i class="devicon-python-plain colored"></i> Python</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-cubes"></i> Prog. Orientada a Objetos</span>
-                                <span class="skill-badge badge-mastered">Avanzado</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="85%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-sitemap"></i> Estructuras de Datos</span>
-                                <span class="skill-badge badge-progress">En Progreso</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="70%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-spider"></i> Web Scraping</span>
-                                <span class="skill-badge badge-mastered">Avanzado</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="90%"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- BASES DE DATOS -->
-                <div class="skill-category">
-                    <h3 class="skill-title"><i class="devicon-mysql-plain colored"></i> Bases de Datos</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-database"></i> SQL (Consultas y ACID)</span>
-                                <span class="skill-badge badge-mastered">Avanzado</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="80%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-project-diagram"></i> Modelado de datos</span>
-                                <span class="skill-badge badge-progress">En Progreso</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="75%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-link"></i> SQLAlchemy (ORM)</span>
-                                <span class="skill-badge badge-mastered">Dominado</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="85%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="devicon-mongodb-plain colored"></i> MongoDB (NoSQL)</span>
-                                <span class="skill-badge badge-exploring">Explorando</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="45%"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- BACKEND -->
-                <div class="skill-category">
-                    <h3 class="skill-title"><i class="devicon-flask-original colored"></i> Backend</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-fire"></i> Flask (APIs REST)</span>
-                                <span class="skill-badge badge-mastered">Avanzado</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="80%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="devicon-django-plain colored"></i> Django Framework</span>
-                                <span class="skill-badge badge-progress">En Progreso</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="60%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-shield-alt"></i> Autenticación y Seguridad</span>
-                                <span class="skill-badge badge-progress">En Progreso</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="65%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-vial"></i> Testing (pytest)</span>
-                                <span class="skill-badge badge-exploring">Explorando</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="50%"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- OTRAS HERRAMIENTAS -->
-                <div class="skill-category">
-                    <h3 class="skill-title"><i class="devicon-git-plain colored"></i> Herramientas / OS</h3>
-                    <ul class="skill-list">
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="devicon-linux-plain colored"></i> Terminal Linux & Bash</span>
-                                <span class="skill-badge badge-mastered">Avanzado</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="85%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="devicon-pandas-original colored"></i> Pandas (Datos)</span>
-                                <span class="skill-badge badge-progress">En Progreso</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="55%"></div>
-                            </div>
-                        </li>
-                        <li class="skill-item">
-                            <div class="skill-item-header">
-                                <span class="skill-name-wrap"><i class="fas fa-chart-line"></i> Matplotlib (Visualización)</span>
-                                <span class="skill-badge badge-progress">En Progreso</span>
-                            </div>
-                            <div class="skill-progress-bar">
-                                <div class="skill-progress-fill" data-progress="60%"></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <div class="tl-item rv rv2">
+              <div class="tl-date">2025 – 2026</div>
+              <div class="tl-name">Especialización Autodidacta</div>
+              <div class="tl-desc">Python OOP, APIs REST (Flask/Django), Web Scraping avanzado y bases de datos relacionales y NoSQL.</div>
             </div>
-        </section>
-
-        <!-- PROYECTOS -->
-        <section class="section" id="proyectos">
-            <h2 class="section-title"><i class="fas fa-folder-open"></i> Proyectos Destacados</h2>
-            <div class="projects-grid">
-                <!-- AutoScripts -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-type-badge">Desktop App / Automatización</span>
-                        <h3 class="project-title">AutoScripts Production Suite</h3>
-                        <span class="project-status status-completed"><i class="fas fa-check-circle"></i> Activo (Completado)</span>
-                    </div>
-                    <div class="project-body">
-                        <p>Herramienta visual avanzada desarrollada en CustomTkinter orientada a la automatización de la producción de audio y video. Integra generación de voz por clonación de IA, transcriptor automático Whisper y sistema inteligente de monitorización de GPU/VRAM en tiempo real para evitar desbordamiento de memoria gráfica.</p>
-                        <div class="tech-list">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">CustomTkinter</span>
-                            <span class="tech-tag">Whisper</span>
-                            <span class="tech-tag">CUDA</span>
-                            <span class="tech-tag">PyTorch</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Explorar código <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Meta AI Automation -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-type-badge">Extension / Scripting</span>
-                        <h3 class="project-title">Meta AI Automation Logic</h3>
-                        <span class="project-status status-completed"><i class="fas fa-check-circle"></i> Activo (Completado)</span>
-                    </div>
-                    <div class="project-body">
-                        <p>Módulo de automatización y extensión de navegador diseñado para interactuar con la interfaz dinámica de Meta AI. Optimiza el despacho de prompts simulando eventos de entrada a nivel de DOM y sorteando barreras de UI dinámicas de forma estable.</p>
-                        <div class="tech-list">
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">DOM Events</span>
-                            <span class="tech-tag">Web Extensions</span>
-                            <span class="tech-tag">Regex</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Ver en GitHub <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- News Scraper -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-type-badge">Web Scraping</span>
-                        <h3 class="project-title">Scraper de Noticias</h3>
-                        <span class="project-status status-in-progress"><i class="fas fa-spinner fa-spin"></i> Semana 17 (Diciembre 2025)</span>
-                    </div>
-                    <div class="project-body">
-                        <p>Web scraper avanzado que recopila noticias en tiempo real de múltiples portales digitales. Analiza la estructura HTML con BeautifulSoup, extrae metadatos y guarda toda la información limpia en formatos estructurados como CSV o bases de datos SQLite.</p>
-                        <div class="tech-list">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">BeautifulSoup</span>
-                            <span class="tech-tag">Requests</span>
-                            <span class="tech-tag">CSV</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Repositorio <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Gestor de Biblioteca -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-type-badge">Backend / CLI</span>
-                        <h3 class="project-title">Gestor de Biblioteca SQL</h3>
-                        <span class="project-status status-planned"><i class="fas fa-clock"></i> Planificado (Semanas 16 a 22)</span>
-                    </div>
-                    <div class="project-body">
-                        <p>Aplicación modular de línea de comandos para la gestión de inventario y usuarios de bibliotecas. Conectada a bases de datos relacionales SQLite mediante el ORM SQLAlchemy y dotada de una interfaz interactiva de consola estructurada con Click.</p>
-                        <div class="tech-list">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">SQLite</span>
-                            <span class="tech-tag">Click</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Ver Detalles <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- API REST con Flask -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <span class="project-type-badge">API Backend</span>
-                        <h3 class="project-title">API RESTful con Flask</h3>
-                        <span class="project-status status-planned"><i class="fas fa-clock"></i> Planificado (Semana 35)</span>
-                    </div>
-                    <div class="project-body">
-                        <p>API RESTful de servicios para la administración integral de recursos y perfiles de usuarios. Utiliza Flask, Flask-SQLAlchemy para persistencia relacional estructurada, y controladores de validación de JWT para endpoints privados.</p>
-                        <div class="tech-list">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">JWT</span>
-                        </div>
-                    </div>
-                    <div class="project-footer">
-                        <a href="https://github.com/zeroami" target="_blank" class="project-link">Ver Detalles <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
+            <div class="tl-item rv rv3">
+              <div class="tl-date">2026 – 2027 · Planificado</div>
+              <div class="tl-name">Grado Superior DAM</div>
+              <div class="tl-desc">Desarrollo de Aplicaciones Multiplataforma. Ingeniería de software, interfaces multiplataforma y desarrollo ágil.</div>
             </div>
-        </section>
-
-        <!-- YOUTUBE SHOWCASE (Café y Bytes) -->
-        <section class="section youtube-section" id="youtube">
-            <div class="youtube-header-wrap">
-                <h2 class="section-title" style="margin-bottom: 0;"><i class="fab fa-youtube"></i> Café y Bytes (YouTube)</h2>
-                <a href="https://www.youtube.com/@cafeybytes?sub_confirmation=1" target="_blank" class="youtube-subscribe-btn">
-                    <i class="fab fa-youtube"></i> Suscribirse
-                </a>
+            <div class="tl-item rv rv4">
+              <div class="tl-date">📌 Meta profesional</div>
+              <div class="tl-name">Administración ASIR</div>
+              <div class="tl-desc">Complementar DAM con ASIR para un perfil Fullstack / DevOps completo y competitivo.</div>
             </div>
-            <div class="youtube-grid">
-                <!-- DHCP Protocol Card -->
-                <a href="https://youtu.be/l6xt-tzO748" target="_blank" class="youtube-card">
-                    <div class="youtube-thumbnail-placeholder">
-                        <i class="fas fa-network-wired video-icon"></i>
-                        <span class="youtube-duration">10:12</span>
-                    </div>
-                    <div class="youtube-card-body">
-                        <h3 class="youtube-card-title">🔧 Protocolo DHCP: Qué es, Cómo Funciona y Para Qué Sirve</h3>
-                        <p class="youtube-card-desc">Aprende qué es DHCP, el proceso DORA (Discover, Offer, Request, Acknowledge) y cómo asigna configuraciones en la administración de redes.</p>
-                        <div class="youtube-card-footer">
-                            <i class="fas fa-play-circle"></i> Ver video tutorial
-                        </div>
-                    </div>
-                </a>
+          </div>
+        </div>
 
-                <!-- IP & Subnets Card -->
-                <a href="https://youtu.be/fxLGuvwVgzM" target="_blank" class="youtube-card">
-                    <div class="youtube-thumbnail-placeholder">
-                        <i class="fas fa-globe video-icon"></i>
-                        <span class="youtube-duration">07:30</span>
-                    </div>
-                    <div class="youtube-card-body">
-                        <h3 class="youtube-card-title">🔍 ¿Qué es una IP? 🌐 Máscaras de Red y Subredes</h3>
-                        <p class="youtube-card-desc">Entiende de forma sencilla qué es una dirección IP (IPv4), qué son las máscaras de red y cómo segmentar redes locales mediante subredes.</p>
-                        <div class="youtube-card-footer">
-                            <i class="fas fa-play-circle"></i> Ver video tutorial
-                        </div>
-                    </div>
-                </a>
+      </div>
+    </section>
+  </div>
 
-                <!-- Active Directory Card -->
-                <a href="https://youtu.be/pGQ3sWrY_Qc" target="_blank" class="youtube-card">
-                    <div class="youtube-thumbnail-placeholder">
-                        <i class="fas fa-sitemap video-icon"></i>
-                        <span class="youtube-duration">09:15</span>
-                    </div>
-                    <div class="youtube-card-body">
-                        <h3 class="youtube-card-title">🌳 Active Directory: DOMINIO, ÁRBOL y BOSQUE 🌲</h3>
-                        <p class="youtube-card-desc">Bienvenido a este tutorial de estructura lógica de Active Directory para principiantes. Desglosamos y explicamos conceptos clave de Windows Server.</p>
-                        <div class="youtube-card-footer">
-                            <i class="fas fa-play-circle"></i> Ver video tutorial
-                        </div>
-                    </div>
-                </a>
+  
+  <div class="wrap">
+    <section class="sec" id="habilidades">
+      <p class="sec-num" data-n="02">Habilidades</p>
+      <h2 class="sec-h rv">Stack técnico<br>en desarrollo.</h2>
+      <div class="sk-grid">
+
+        
+        <div class="sk-card rv">
+          <div class="sk-ttl"><i class="devicon-python-plain colored"></i> Python</div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-cubes"></i> OOP</span>
+              <span class="badge b-av">Avanzado</span>
             </div>
-        </section>
-
-        <!-- CONTACTO -->
-        <section class="section" id="contacto">
-            <h2 class="section-title"><i class="fas fa-paper-plane"></i> Contacto</h2>
-            <div class="contact-methods">
-                <div class="contact-card">
-                    <i class="fab fa-youtube"></i>
-                    <h3 class="contact-title">YouTube</h3>
-                    <p class="contact-info">Mi canal de aprendizaje y tutoriales</p>
-                    <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="contact-btn">@cafeybytes</a>
-                </div>
-
-                <div class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <h3 class="contact-title">Email</h3>
-                    <p class="contact-info">Escríbeme para colaborar</p>
-                    <a href="mailto:zerozeid@duck.com" class="contact-btn">zerozeid@duck.com</a>
-                </div>
-
-                <div class="contact-card">
-                    <i class="fab fa-github"></i>
-                    <h3 class="contact-title">GitHub</h3>
-                    <p class="contact-info">Explora mis repositorios</p>
-                    <a href="https://github.com/zeroami" target="_blank" class="contact-btn">github.com/zeroami</a>
-                </div>
-
-                <div class="contact-card">
-                    <i class="fab fa-telegram-plane"></i>
-                    <h3 class="contact-title">Telegram</h3>
-                    <p class="contact-info">Hablemos de tus proyectos</p>
-                    <a href="https://t.me/amzzdev" target="_blank" class="contact-btn">t.me/amzzdev</a>
-                </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="85"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-sitemap"></i> Estructuras de Datos</span>
+              <span class="badge b-pr">En Progreso</span>
             </div>
-        </section>
+            <div class="sk-bar"><div class="sk-fill" data-p="70"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-spider"></i> Web Scraping</span>
+              <span class="badge b-av">Avanzado</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="90"></div></div>
+          </div>
+        </div>
 
-        <!-- FOOTER -->
-        <footer class="footer">
-            <p>© 2026 zerozeid — Creador de <a href="https://www.youtube.com/@cafeybytes" target="_blank">@cafeybytes</a></p>
-            <p style="font-family: 'Roboto Mono', monospace; font-size: 0.85rem; color: var(--accent); margin-top: 0.5rem;">
-                “La mejor forma de predecir el futuro es inventarlo.” — Alan Kay
-            </p>
-            <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 1rem;">Última actualización: Mayo 2026</p>
-        </footer>
-    </div>
+        
+        <div class="sk-card rv rv1">
+          <div class="sk-ttl"><i class="devicon-mysql-plain colored"></i> Bases de Datos</div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-database"></i> SQL</span>
+              <span class="badge b-av">Avanzado</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="80"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-project-diagram"></i> Modelado de Datos</span>
+              <span class="badge b-pr">En Progreso</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="75"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-link"></i> SQLAlchemy ORM</span>
+              <span class="badge b-do">Dominado</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="85"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
+              <span class="badge b-ex">Explorando</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="45"></div></div>
+          </div>
+        </div>
 
-    <!-- CORE INTERACTIVE JAVASCRIPT -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // ==========================================
-            // 1. EFECTO SPOTLIGHT CARD MOUSE TRACKING
-            // ==========================================
-            const cards = document.querySelectorAll('.section, .project-card, .skill-category, .contact-card, .youtube-card, .terminal-wrapper');
-            
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                });
-            });
+        
+        <div class="sk-card rv rv2">
+          <div class="sk-ttl"><i class="devicon-flask-original"></i> Backend</div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-fire"></i> Flask (APIs REST)</span>
+              <span class="badge b-av">Avanzado</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="80"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="devicon-django-plain colored"></i> Django</span>
+              <span class="badge b-pr">En Progreso</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="60"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-shield-alt"></i> Auth & JWT</span>
+              <span class="badge b-pr">En Progreso</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="65"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-vial"></i> Testing (pytest)</span>
+              <span class="badge b-ex">Explorando</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="50"></div></div>
+          </div>
+        </div>
 
-            // ==========================================
-            // 2. ANIMACIÓN DE BARRAS DE PROGRESO DE HABILIDADES
-            // ==========================================
-            const progressFills = document.querySelectorAll('.skill-progress-fill');
-            
-            const animateSkills = () => {
-                progressFills.forEach(fill => {
-                    const targetProgress = fill.getAttribute('data-progress');
-                    const rect = fill.getBoundingClientRect();
-                    
-                    // Solo animar si está en el viewport
-                    if(rect.top < window.innerHeight && rect.bottom >= 0) {
-                        fill.style.width = targetProgress;
-                    }
-                });
-            };
+        
+        <div class="sk-card rv rv3">
+          <div class="sk-ttl"><i class="devicon-git-plain colored"></i> Herramientas / OS</div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="devicon-linux-plain colored"></i> Linux & Bash</span>
+              <span class="badge b-av">Avanzado</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="85"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="devicon-pandas-original colored"></i> Pandas</span>
+              <span class="badge b-pr">En Progreso</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="55"></div></div>
+          </div>
+          <div class="sk-row">
+            <div class="sk-head">
+              <span class="sk-name"><i class="fas fa-chart-line"></i> Matplotlib</span>
+              <span class="badge b-pr">En Progreso</span>
+            </div>
+            <div class="sk-bar"><div class="sk-fill" data-p="60"></div></div>
+          </div>
+        </div>
 
-            // Escuchar el scroll para gatillar animaciones
-            window.addEventListener('scroll', animateSkills);
-            // Ejecutar en la carga inicial por si ya están visibles
-            setTimeout(animateSkills, 500);
+      </div>
+    </section>
+  </div>
 
-            // ==========================================
-            // 3. SIMULACIÓN DE TERMINAL INTERACTIVA
-            // ==========================================
-            const terminalInput = document.getElementById('terminal-input');
-            const terminalScreen = document.getElementById('terminal-screen');
-            const quickActionButtons = document.querySelectorAll('.quick-action-btn');
-            
-            const responseDb = {
-                'help': `Comandos disponibles:
-  <span style="color: var(--accent)">about</span>       - Resumen breve sobre zerozeid
-  <span style="color: var(--accent)">skills</span>      - Lista de tecnologías y frameworks
-  <span style="color: var(--accent)">projects</span>    - Información de desarrollos clave
-  <span style="color: var(--accent)">youtube</span>     - Datos del canal Café y Bytes
-  <span style="color: var(--accent)">neofetch</span>    - Logotipo y resumen del sistema
-  <span style="color: var(--accent)">clear</span>       - Limpiar pantalla`,
-                
-                'about': `[ZEROZEID - SOBRE MÍ]
-Técnico informático titulado en SMR (Sistemas Microinformáticos y Redes).
-Actualmente estudiando Python y Bases de datos (SQL, NoSQL, ORM) con la
-meta de especializarme en desarrollo Backend y Administración.
-Canal de YouTube: @cafeybytes (Compartiendo conocimiento y automatizaciones).`,
-                
-                'skills': `[HABILIDADES Y TECNOLOGÍAS]
-  - Python: Programación Orientada a Objetos, Scraping (BeautifulSoup), Pandas.
-  - Bases de Datos: SQL avanzado, SQLAlchemy ORM, Modelado Relacional, MongoDB.
-  - Backend: Flask APIs REST, Django, Auth & JWT, Pytest.
-  - Sistemas: Terminal Linux & Bash Scripting, Redes y Administración SMR.`,
-                
-                'projects': `[PROYECTOS DESTACADOS]
-  1. AutoScripts Production Suite (Python / CustomTkinter / PyTorch)
-     - Suite visual de clonación por IA (TTS), transcriptor Whisper y control GPU/VRAM.
-  2. Meta AI Automation (JavaScript / DOM)
-     - Lógica de eventos estables y bypass de UI para automatizar prompts.
-  3. Scraper de Noticias (Python / BeautifulSoup / Requests)
-     - Recopilador y procesador estructurado en tiempo real.
-  4. Gestor de Biblioteca (Python / SQLAlchemy / Click)
-     - CLI backend conectado a SQLite relacional.`,
-                
-                'youtube': `[CANAL: CAFÉ Y BYTES]
-Plataforma: YouTube (@cafeybytes)
-Objetivo: Divulgar programación práctica, redes y sistemas de forma amena.
-Temas principales:
-  - Automatización del día a día con Python
-  - Resolviendo retos de Bases de Datos
-  - Entendiendo las Redes desde SMR
-Visita y suscríbete en: https://www.youtube.com/@cafeybytes`,
-                
-                'neofetch': `<span style="color: var(--primary)">      /\\_/\\      </span>   <span style="color: var(--accent)">zerozeid@cafeybytes</span>
-<span style="color: var(--primary)">     ( o.o )     </span>   -------------------
-<span style="color: var(--primary)">      > ^ <      </span>   OS: Windows 11 / Linux (SMR Environment)
-<span style="color: var(--primary)">    /       \\    </span>   Host: DevStation 2026
-<span style="color: var(--primary)">   /|       |\\   </span>   Kernel: Python 3.12 / CustomTkinter GUI
-<span style="color: var(--primary)">  (_|_______|_)  </span>   Uptime: 24/7 coding
-                    Shell: Powershell / Bash
-                    Editor: Visual Studio Code
-                    Language: Python, SQL, JavaScript
-                    Hobby: Café & Bytes☕💻`
-            };
+  
+  <div class="wrap">
+    <section class="sec" id="proyectos">
+      <p class="sec-num" data-n="03">Proyectos</p>
+      <h2 class="sec-h rv">Lo que he<br>construido.</h2>
 
-            const writeToTerminal = (text) => {
-                const outputDiv = document.createElement('div');
-                outputDiv.className = 'terminal-output';
-                outputDiv.innerHTML = text;
-                // Insertar justo antes de la línea de entrada
-                terminalScreen.insertBefore(outputDiv, terminalScreen.lastElementChild);
-                terminalScreen.scrollTop = terminalScreen.scrollHeight;
-            };
+      <div class="proj-list">
 
-            const executeCommand = (cmdText) => {
-                const cleanCmd = cmdText.trim().toLowerCase();
-                
-                // Mostrar el comando ejecutado en pantalla
-                const echoDiv = document.createElement('div');
-                echoDiv.className = 'terminal-input-line';
-                echoDiv.innerHTML = `<span class="terminal-prompt">zerozeid@cafeybytes:~$</span> <span>${cmdText}</span>`;
-                terminalScreen.insertBefore(echoDiv, terminalScreen.lastElementChild);
+        <a href="https://github.com/zeroami" target="_blank" class="proj rv">
+          <span class="proj-n">01</span>
+          <div class="proj-main">
+            <div class="proj-type">Desktop App / Automatización</div>
+            <div class="proj-title">AutoScripts Production Suite</div>
+            <div class="proj-desc">Suite visual en CustomTkinter para automatización de producción de audio y video. Clonación de voz con IA, transcriptor Whisper y monitorización GPU/VRAM en tiempo real.</div>
+            <div class="proj-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">CustomTkinter</span>
+              <span class="proj-tag">Whisper</span>
+              <span class="proj-tag">CUDA</span>
+              <span class="proj-tag">PyTorch</span>
+            </div>
+          </div>
+          <div class="proj-right">
+            <span class="proj-st st-on">Activo</span>
+            <i class="fas fa-arrow-right proj-arrow"></i>
+          </div>
+        </a>
 
-                if (cleanCmd === '') {
-                    terminalScreen.scrollTop = terminalScreen.scrollHeight;
-                    return;
-                }
+        <a href="https://github.com/zeroami" target="_blank" class="proj rv rv1">
+          <span class="proj-n">02</span>
+          <div class="proj-main">
+            <div class="proj-type">Extension / Scripting</div>
+            <div class="proj-title">Meta AI Automation Logic</div>
+            <div class="proj-desc">Extensión de navegador para automatizar interacciones con Meta AI. Simula eventos DOM con estabilidad para sortear barreras de UI dinámicas.</div>
+            <div class="proj-tags">
+              <span class="proj-tag">JavaScript</span>
+              <span class="proj-tag">DOM Events</span>
+              <span class="proj-tag">Web Extensions</span>
+              <span class="proj-tag">Regex</span>
+            </div>
+          </div>
+          <div class="proj-right">
+            <span class="proj-st st-on">Activo</span>
+            <i class="fas fa-arrow-right proj-arrow"></i>
+          </div>
+        </a>
 
-                if (cleanCmd === 'clear') {
-                    // Remover todas las salidas y comandos anteriores
-                    const elementsToRemove = terminalScreen.querySelectorAll('.terminal-output, .terminal-input-line');
-                    elementsToRemove.forEach(el => {
-                        if (el !== terminalScreen.lastElementChild) {
-                            el.remove();
-                        }
-                    });
-                } else if (responseDb[cleanCmd]) {
-                    writeToTerminal(responseDb[cleanCmd]);
-                } else {
-                    writeToTerminal(`Comando no encontrado: <span style="color: #ef4444">${cleanCmd}</span>. Escribe <span style="color: var(--accent)">help</span> para ver las opciones.`);
-                }
-                
-                terminalScreen.scrollTop = terminalScreen.scrollHeight;
-            };
+        <a href="https://github.com/zeroami" target="_blank" class="proj rv rv2">
+          <span class="proj-n">03</span>
+          <div class="proj-main">
+            <div class="proj-type">Web Scraping</div>
+            <div class="proj-title">Scraper de Noticias</div>
+            <div class="proj-desc">Scraper en tiempo real de múltiples portales digitales. Análisis HTML con BeautifulSoup, extracción de metadatos y guardado en CSV o SQLite.</div>
+            <div class="proj-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">BeautifulSoup</span>
+              <span class="proj-tag">Requests</span>
+              <span class="proj-tag">SQLite</span>
+            </div>
+          </div>
+          <div class="proj-right">
+            <span class="proj-st st-wip">En Progreso</span>
+            <i class="fas fa-arrow-right proj-arrow"></i>
+          </div>
+        </a>
 
-            terminalInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    const value = terminalInput.value;
-                    executeCommand(value);
-                    terminalInput.value = '';
-                }
-            });
+        <a href="https://github.com/zeroami" target="_blank" class="proj rv rv3">
+          <span class="proj-n">04</span>
+          <div class="proj-main">
+            <div class="proj-type">Backend / CLI</div>
+            <div class="proj-title">Gestor de Biblioteca SQL</div>
+            <div class="proj-desc">CLI modular para gestión de inventario de bibliotecas. SQLite mediante SQLAlchemy ORM e interfaz interactiva construida con Click.</div>
+            <div class="proj-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">SQLAlchemy</span>
+              <span class="proj-tag">SQLite</span>
+              <span class="proj-tag">Click</span>
+            </div>
+          </div>
+          <div class="proj-right">
+            <span class="proj-st st-pl">Planificado</span>
+            <i class="fas fa-arrow-right proj-arrow"></i>
+          </div>
+        </a>
 
-            // Enlazar los botones de accesos rápidos
-            quickActionButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const cmd = btn.getAttribute('data-cmd');
-                    executeCommand(cmd);
-                });
-            });
+        <a href="https://github.com/zeroami" target="_blank" class="proj rv rv4">
+          <span class="proj-n">05</span>
+          <div class="proj-main">
+            <div class="proj-type">API Backend</div>
+            <div class="proj-title">API RESTful con Flask</div>
+            <div class="proj-desc">API de administración integral de recursos y usuarios. Flask + SQLAlchemy para persistencia relacional y JWT para endpoints privados.</div>
+            <div class="proj-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">Flask</span>
+              <span class="proj-tag">SQLAlchemy</span>
+              <span class="proj-tag">JWT</span>
+            </div>
+          </div>
+          <div class="proj-right">
+            <span class="proj-st st-pl">Planificado</span>
+            <i class="fas fa-arrow-right proj-arrow"></i>
+          </div>
+        </a>
 
-            // Auto-escribir neofetch al inicio para dar impacto visual
-            setTimeout(() => {
-                executeCommand('neofetch');
-            }, 1000);
-        });
-    </script>
+      </div>
+    </section>
+  </div>
+
+  
+  <div class="wrap">
+    <section class="sec" id="youtube">
+      <p class="sec-num" data-n="04">YouTube</p>
+      <div class="yt-hdr">
+        <h2 class="sec-h rv" style="margin-bottom:0">Café y Bytes</h2>
+        <a href="https://www.youtube.com/@cafeybytes?sub_confirmation=1" target="_blank" class="yt-sub">
+          <i class="fab fa-youtube"></i> Suscribirse
+        </a>
+      </div>
+      <div class="yt-grid">
+        <a href="https://youtu.be/l6xt-tzO748" target="_blank" class="yt-card rv">
+          <div class="yt-thumb">
+            <i class="fas fa-network-wired yt-thumb-ico"></i>
+            <span class="yt-dur">10:12</span>
+          </div>
+          <div class="yt-info">
+            <div class="yt-vid-ttl">Protocolo DHCP: Qué es, Cómo Funciona y Para Qué Sirve</div>
+            <div class="yt-vid-desc">El proceso DORA y cómo DHCP asigna configuraciones de red automáticamente.</div>
+            <div class="yt-play"><i class="fas fa-play-circle"></i> Ver tutorial</div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/fxLGuvwVgzM" target="_blank" class="yt-card rv rv1">
+          <div class="yt-thumb">
+            <i class="fas fa-globe yt-thumb-ico"></i>
+            <span class="yt-dur">07:30</span>
+          </div>
+          <div class="yt-info">
+            <div class="yt-vid-ttl">¿Qué es una IP? Máscaras de Red y Subredes</div>
+            <div class="yt-vid-desc">IPv4, máscaras de red y cómo segmentar redes locales con subredes.</div>
+            <div class="yt-play"><i class="fas fa-play-circle"></i> Ver tutorial</div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/pGQ3sWrY_Qc" target="_blank" class="yt-card rv rv2">
+          <div class="yt-thumb">
+            <i class="fas fa-sitemap yt-thumb-ico"></i>
+            <span class="yt-dur">09:15</span>
+          </div>
+          <div class="yt-info">
+            <div class="yt-vid-ttl">Active Directory: DOMINIO, ÁRBOL y BOSQUE</div>
+            <div class="yt-vid-desc">Estructura lógica de Active Directory. Conceptos clave de Windows Server para principiantes.</div>
+            <div class="yt-play"><i class="fas fa-play-circle"></i> Ver tutorial</div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  
+  <div class="wrap">
+    <section class="sec" id="contacto">
+      <p class="sec-num" data-n="05">Contacto</p>
+      <div class="ct-wrap">
+        <div>
+          <h2 class="ct-intro rv">
+            ¿Tienes un<br>proyecto<br>en mente<em>?</em>
+          </h2>
+          <p class="ct-sub rv rv1">
+            Disponible para colaboraciones, proyectos freelance o simplemente para hablar de tecnología.
+          </p>
+        </div>
+        <div class="ct-items">
+          <a href="https://www.youtube.com/@cafeybytes" target="_blank" class="ct-item rv">
+            <div class="ct-left">
+              <i class="fab fa-youtube ct-ico"></i>
+              <div>
+                <div class="ct-lbl">YouTube</div>
+                <div class="ct-val">@cafeybytes</div>
+              </div>
+            </div>
+            <i class="fas fa-arrow-right ct-arr"></i>
+          </a>
+          <a href="mailto:zerozeid@duck.com" class="ct-item rv rv1">
+            <div class="ct-left">
+              <i class="fas fa-envelope ct-ico"></i>
+              <div>
+                <div class="ct-lbl">Email</div>
+                <div class="ct-val">zerozeid@duck.com</div>
+              </div>
+            </div>
+            <i class="fas fa-arrow-right ct-arr"></i>
+          </a>
+          <a href="https://github.com/zeroami" target="_blank" class="ct-item rv rv2">
+            <div class="ct-left">
+              <i class="fab fa-github ct-ico"></i>
+              <div>
+                <div class="ct-lbl">GitHub</div>
+                <div class="ct-val">github.com/zeroami</div>
+              </div>
+            </div>
+            <i class="fas fa-arrow-right ct-arr"></i>
+          </a>
+          <a href="https://t.me/amzzdev" target="_blank" class="ct-item rv rv3">
+            <div class="ct-left">
+              <i class="fab fa-telegram-plane ct-ico"></i>
+              <div>
+                <div class="ct-lbl">Telegram</div>
+                <div class="ct-val">t.me/amzzdev</div>
+              </div>
+            </div>
+            <i class="fas fa-arrow-right ct-arr"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  
+  <div class="wrap">
+    <footer class="ftr">
+      <div class="ftr-copy">
+        © 2026 zerozeid · Creador de <a href="https://www.youtube.com/@cafeybytes" target="_blank">@cafeybytes</a>
+        <span style="opacity:.35;margin:0 7px">·</span>
+        <span style="opacity:.45;font-size:11px">Última actualización: Mayo 2026</span>
+      </div>
+      <div class="ftr-quote">"La mejor forma de predecir el futuro es inventarlo." — Alan Kay</div>
+    </footer>
+  </div>
+
+</main>
+
+<script>
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('pre').classList.add('gone');
+    document.body.classList.remove('loading');
+    setTimeout(() => {
+      document.getElementById('hl').classList.add('on');
+      document.getElementById('hn').classList.add('on');
+      document.getElementById('hc').classList.add('on');
+    }, 250);
+  }, 1700);
+});
+
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in') });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+const so = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.sk-fill').forEach(f => {
+        f.style.width = f.dataset.p + '%';
+      });
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.sk-card').forEach(c => so.observe(c));
+
+const ts   = document.getElementById('ts');
+const ti   = document.getElementById('ti');
+
+const CMDS = {
+  help:
+`Comandos disponibles:
+  <span style="color:#ff8400">about</span>       — Quién es zerozeid
+  <span style="color:#ff8400">skills</span>      — Stack tecnológico
+  <span style="color:#ff8400">projects</span>    — Proyectos destacados
+  <span style="color:#ff8400">youtube</span>     — Canal Café y Bytes
+  <span style="color:#ff8400">neofetch</span>    — Resumen del sistema
+  <span style="color:#ff8400">clear</span>       — Limpiar pantalla`,
+
+  about:
+`[ZEROZEID]
+Técnico SMR. Desarrollando Python, SQL y backend.
+Meta: DAM → ASIR → Fullstack/DevOps.
+Canal YouTube: @cafeybytes`,
+
+  skills:
+`[STACK TÉCNICO]
+  Python   ▓▓▓▓▓▓▓▓▓░  OOP · Scraping · Pandas
+  SQL      ▓▓▓▓▓▓▓▓░░  SQLAlchemy · Modelado
+  Backend  ▓▓▓▓▓▓▓░░░  Flask · Django · JWT
+  Linux    ▓▓▓▓▓▓▓▓▓░  Bash · Terminal · Redes`,
+
+  projects:
+`[PROYECTOS]
+  01. AutoScripts Production Suite (Python / CUDA)
+  02. Meta AI Automation (JavaScript / DOM)
+  03. Scraper de Noticias (BeautifulSoup / SQLite)
+  04. Gestor de Biblioteca (SQLAlchemy / Click)
+  05. API RESTful Flask (JWT) — Planificado`,
+
+  youtube:
+`[CAFÉ Y BYTES]
+  Plataforma: YouTube · @cafeybytes
+  Temas: redes, Python, sistemas, automatización.
+  → https://youtube.com/@cafeybytes`,
+
+  neofetch:
+`<span style="color:#ff8400">  ╔══════╗</span>   zerozeid@cafeybytes
+<span style="color:#ff8400">  ║ z·e  ║</span>   ──────────────────
+<span style="color:#ff8400">  ║  id  ║</span>   OS: Windows 11 / Linux
+<span style="color:#ff8400">  ╚══════╝</span>   Shell: PowerShell / Bash
+            Editor: VS Code
+            Lang: Python · SQL · JS
+            Status: 24/7 coding ☕`
+};
+
+function addLine(html) {
+  const d = document.createElement('div');
+  d.className = 't-line';
+  d.innerHTML = html;
+  ts.insertBefore(d, ts.lastElementChild);
+  ts.scrollTop = ts.scrollHeight;
+}
+
+function run(cmd) {
+  const c = cmd.trim().toLowerCase();
+  const echo = document.createElement('div');
+  echo.className = 't-row';
+  echo.innerHTML = `<span class="t-prompt">zerozeid@cafeybytes:~$</span><span style="color:rgba(255,255,255,.88)">${cmd}</span>`;
+  ts.insertBefore(echo, ts.lastElementChild);
+  if (!c) { ts.scrollTop = ts.scrollHeight; return; }
+  if (c === 'clear') {
+    ts.querySelectorAll('.t-line,.t-row').forEach(el => {
+      if (el !== ts.lastElementChild) el.remove();
+    });
+  } else if (CMDS[c]) {
+    addLine(CMDS[c]);
+  } else {
+    addLine(`Comando no encontrado: <span style="color:#ef4444">${c}</span>. Escribe <span style="color:#ff8400">help</span>.`);
+  }
+  ts.scrollTop = ts.scrollHeight;
+}
+
+ti.addEventListener('keydown', e => {
+  if (e.key === 'Enter') { run(ti.value); ti.value = ''; }
+});
+document.querySelectorAll('.t-btn').forEach(b => {
+  b.addEventListener('click', () => run(b.dataset.c));
+});
+setTimeout(() => run('neofetch'), 2300);
+</script>
 </body>
 </html>
