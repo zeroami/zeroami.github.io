@@ -46,7 +46,7 @@
 
     /* HERO */
     .hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3.5rem;padding:calc(var(--nh) + 4rem) clamp(1.25rem,5vw,4rem) 4rem;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 55% at 15% 55%,rgba(129,140,248,.07) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 85% 25%,rgba(34,211,238,.05) 0%,transparent 65%)}
+    .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 55% at 15% 55%,rgba(129,140,248,.07) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 85% 25%,rgba(34,211,238,.05) 0%,transparent 65%);transform:translateY(var(--py,0px));will-change:transform}
     .hl{position:relative;z-index:1}
     .badge{display:inline-flex;align-items:center;gap:.45rem;padding:.35rem .85rem;margin-bottom:1.5rem;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.22);border-radius:99px;font-size:.78rem;font-weight:600;color:var(--gr)}
     .bd2{width:6px;height:6px;background:var(--gr);border-radius:50%;animation:pd 2s ease-in-out infinite}
@@ -131,10 +131,19 @@
     footer{padding:1.75rem clamp(1.25rem,5vw,4rem);border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
     .ft{font-family:var(--m);font-size:.78rem;color:var(--t3)}
 
+    /* PROGRESS BAR */
+    #spb{position:fixed;top:0;left:0;height:3px;z-index:300;background:linear-gradient(90deg,var(--ac),var(--cy));width:0%;transition:width .08s linear;pointer-events:none}
+
     /* REVEAL */
-    .rv{opacity:0;transform:translateY(22px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1)}
+    .rv{opacity:0;transform:translateY(24px);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1)}
     .rv.vs{opacity:1;transform:translateY(0)}
-    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+    .rv-l{opacity:0;transform:translateX(-32px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+    .rv-l.vs{opacity:1;transform:translateX(0)}
+    .rv-r{opacity:0;transform:translateX(32px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+    .rv-r.vs{opacity:1;transform:translateX(0)}
+    .rv-s{opacity:0;transform:scale(.92);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+    .rv-s.vs{opacity:1;transform:scale(1)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
     /* RESPONSIVE */
     @media(max-width:900px){
@@ -147,6 +156,7 @@
   </style>
 </head>
 <body>
+<div id="spb" aria-hidden="true"></div>
 
 <nav id="nav" aria-label="Navegación principal">
   <a href="#" class="nl" aria-label="zerozeid — inicio"><div class="nd" aria-hidden="true"></div>zerozeid</a>
@@ -181,20 +191,20 @@
 
   <!-- ABOUT -->
   <section id="about" aria-label="Sobre mí">
-    <p class="sl rv">01 — sobre mí</p>
+    <p class="sl rv-l">01 — sobre mí</p>
     <div class="bento" role="list">
-      <article class="bc s7 rv" role="listitem">
+      <article class="bc s7 rv-l" role="listitem">
         <p class="btext">Soy <strong>zerozeid</strong>, técnico informático y desarrollador en formación afincado en <strong>España</strong>. Me apasiona construir herramientas que resuelvan problemas reales: desde scripts de automatización hasta aplicaciones de escritorio completas.<br><br>Actualmente aprendo desarrollo web mientras profundizo en Python. Comparto el proceso en mi canal de YouTube <strong>Café y Bytes</strong>.</p>
       </article>
-      <article class="bc s5 rv d1" role="listitem">
+      <article class="bc s5 rv-r d1" role="listitem">
         <div class="sg2">
-          <div><div class="sn">3<span>+</span></div><div class="slb">Proyectos</div></div>
-          <div><div class="sn">7<span>+</span></div><div class="slb">Tecnologías</div></div>
-          <div><div class="sn">1</div><div class="slb">Canal YouTube</div></div>
+          <div><div class="sn" data-count="3" data-suffix="+">3<span>+</span></div><div class="slb">Proyectos</div></div>
+          <div><div class="sn" data-count="7" data-suffix="+">7<span>+</span></div><div class="slb">Tecnologías</div></div>
+          <div><div class="sn" data-count="1" data-suffix="">1</div><div class="slb">Canal YouTube</div></div>
           <div><div class="sn">∞</div><div class="slb">Ganas de aprender</div></div>
         </div>
       </article>
-      <article class="bc s4 rv d2" role="listitem" style="display:flex;flex-direction:column">
+      <article class="bc s4 rv-s d2" role="listitem" style="display:flex;flex-direction:column">
         <p class="ytl">YouTube</p>
         <p class="ytc">Café y Bytes</p>
         <p class="ytd">Tecnología, automatización y programación explicados sin rodeos.</p>
@@ -203,7 +213,7 @@
           Ver canal
         </a>
       </article>
-      <article class="bc s8 gc rv d3" role="listitem">
+      <article class="bc s8 gc rv-r d3" role="listitem">
         <p class="nwl">Construyendo ahora</p>
         <p class="nwt">AutoScripts <span>Suite</span></p>
         <p class="nws">Python · TTS · FFmpeg · CustomTkinter</p>
@@ -213,26 +223,26 @@
 
   <!-- STACK -->
   <section id="stack" aria-labelledby="sh">
-    <p class="sl rv">02 — stack</p>
-    <h2 class="st rv" id="sh">Tecnologías que uso</h2>
+    <p class="sl rv-l">02 — stack</p>
+    <h2 class="st rv-l d1" id="sh">Tecnologías que uso</h2>
     <div class="skg" id="skg" role="list" aria-label="Stack tecnológico"></div>
   </section>
 
   <!-- PROJECTS -->
   <section id="projects" aria-labelledby="ph">
-    <p class="sl rv">03 — proyectos</p>
-    <h2 class="st rv" id="ph">Lo que he construido</h2>
-    <p class="sd rv">Proyectos propios que resuelven problemas reales o exploran ideas que me interesan.</p>
+    <p class="sl rv-l">03 — proyectos</p>
+    <h2 class="st rv-l d1" id="ph">Lo que he construido</h2>
+    <p class="sd rv d2">Proyectos propios que resuelven problemas reales o exploran ideas que me interesan.</p>
     <div class="pg" id="pg" role="list" aria-label="Proyectos"></div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" aria-labelledby="ch">
     <div class="ci">
-      <p class="sl rv">04 — contacto</p>
-      <h2 class="st rv" id="ch">Hablemos</h2>
-      <p class="sd rv">¿Tienes un proyecto, una pregunta o simplemente quieres saludar?</p>
-      <a href="mailto:zerozeid@duck.com" class="ce rv" aria-label="Enviar email a zerozeid@duck.com">
+      <p class="sl rv-l">04 — contacto</p>
+      <h2 class="st rv-l d1" id="ch">Hablemos</h2>
+      <p class="sd rv d2">¿Tienes un proyecto, una pregunta o simplemente quieres saludar?</p>
+      <a href="mailto:zerozeid@duck.com" class="ce rv d3" aria-label="Enviar email a zerozeid@duck.com">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         zerozeid@duck.com
       </a>
@@ -257,12 +267,35 @@
 </footer>
 
 <script>
-  // NAV scroll
+  // NAV scroll + PROGRESS BAR + PARALLAX
   const nav=document.getElementById('nav');
-  window.addEventListener('scroll',()=>{nav.classList.toggle('sc',scrollY>40)},{passive:true});
+  const spb=document.getElementById('spb');
+  const hero=document.querySelector('.hero');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('sc',scrollY>40);
+    const pct=scrollY/(document.body.scrollHeight-innerHeight)*100;
+    spb.style.width=Math.min(pct,100)+'%';
+    hero.style.setProperty('--py',(scrollY*.28)+'px');
+  },{passive:true});
 
   // TERMINAL
-  const ls=['<span class="tp">❯</span> <span class="tc2">python autoscripts.py</span>','<span class="ti">  Cargando pipeline...</span>','<span class="tok">  ✓ Motor TTS listo</span>','<span class="ti">  Generando parte 01/08...</span>','<span class="tok">  ✓ Audio → AUDIO_completo.wav</span>','','<span class="tp">❯</span> <span class="tc2">python meta_ai.py --batch 20</span>','<span class="ti">  Iniciando sesión del navegador...</span>','<span class="ti">  Cola: 20 prompts cargados</span>','<span class="tok">  ✓ Respuestas extraídas</span>','','<span class="tp">❯</span> <span class="tcm"># zerozeid.py — always learning</span>'];
+  const ls=[
+    '<span class="tp">❯</span> <span class="tc2">whoami</span>',
+    '<span class="tc2">  zerozeid</span>',
+    '',
+    '<span class="tp">❯</span> <span class="tc2">cat ~/.profile</span>',
+    '<span class="ti">  nombre    zerozeid</span>',
+    '<span class="ti">  rol       Dev in Training</span>',
+    '<span class="ti">  base      España</span>',
+    '<span class="ti">  email     zerozeid@duck.com</span>',
+    '<span class="ti">  github    github.com/zeroami</span>',
+    '<span class="tok">  ✓ perfil cargado</span>',
+    '',
+    '<span class="tp">❯</span> <span class="tc2">ls proyectos/</span>',
+    '<span class="tc2">  AutoScripts/   MetaAI/   Webs/</span>',
+    '',
+    '<span class="tp">❯</span> <span class="tcm"># aprendiendo · construyendo · siempre</span>'
+  ];
   const tb=document.getElementById('tb');let li=0;
   function nL(){
     if(li>=ls.length){const c=document.createElement('span');c.className='cur';tb.appendChild(c);return;}
@@ -274,7 +307,26 @@
 
   // REVEAL
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vs');obs.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -36px 0px'});
-  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s').forEach(el=>obs.observe(el));
+
+  // COUNTERS
+  function runCounter(el){
+    const target=+el.dataset.count;
+    const suffix=el.dataset.suffix||'';
+    const dur=1200;let s=null;
+    const tick=ts=>{
+      if(!s)s=ts;
+      const p=Math.min((ts-s)/dur,1);
+      const ease=1-Math.pow(1-p,3);
+      const val=Math.round(ease*target);
+      el.innerHTML=suffix?val+'<span>'+suffix+'</span>':val;
+      if(p<1)requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sn[data-count]').forEach(runCounter);cObs.unobserve(e.target);}});},{threshold:.4});
+  const statsCard=document.querySelector('.bc.s5');
+  if(statsCard)cObs.observe(statsCard);
 
   // STACK
   const sk=[{n:'Python',c:'#3776AB',b:'rgba(55,118,171,.15)'},{n:'Automation',c:'#f59e0b',b:'rgba(245,158,11,.12)'},{n:'Flask',c:'#94a3b8',b:'rgba(148,163,184,.1)'},{n:'SQLite',c:'#6ba2c1',b:'rgba(107,162,193,.15)'},{n:'Selenium',c:'#43b02a',b:'rgba(67,176,42,.12)'},{n:'HTML',c:'#e34c26',b:'rgba(227,76,38,.12)'},{n:'CSS',c:'#264de4',b:'rgba(38,77,228,.12)'},{n:'JavaScript',c:'#f7df1e',b:'rgba(247,223,30,.1)'},{n:'CustomTkinter',c:'#818cf8',b:'rgba(129,140,248,.12)'},{n:'FFmpeg',c:'#00a000',b:'rgba(0,160,0,.1)'},{n:'Git',c:'#f05032',b:'rgba(240,80,50,.12)'},{n:'Linux',c:'#fcc624',b:'rgba(252,198,36,.1)'}];
