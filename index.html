@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>zerozeid - Portfolio tecnico</title>
-  <meta name="description" content="Portfolio de zerozeid: tecnico informatico y desarrollador en formacion especializado en automatizacion, Python, ciberseguridad y herramientas web.">
+  <title>zerozeid - Portfolio en formacion</title>
+  <meta name="description" content="Portfolio de zerozeid: estudiante de DAM y tecnico informatico en formacion, construyendo proyectos con apoyo de IA mientras consolida sus bases de programacion.">
   <link rel="canonical" href="https://zerozeid.github.io/zeroami.github.io/">
   <meta name="theme-color" content="#07070f">
-  <meta property="og:title" content="zerozeid - Portfolio tecnico">
-  <meta property="og:description" content="Automatizacion, Python, ciberseguridad y desarrollo web desde Espana.">
+  <meta property="og:title" content="zerozeid - Portfolio en formacion">
+  <meta property="og:description" content="Estudiante de DAM construyendo proyectos con apoyo de IA y documentando su aprendizaje.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zerozeid.github.io/zeroami.github.io/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="zerozeid - Portfolio tecnico">
-  <meta name="twitter:description" content="Tecnico informatico y desarrollador en formacion. Automatizacion, Python, ciberseguridad y web.">
+  <meta name="twitter:title" content="zerozeid - Portfolio en formacion">
+  <meta name="twitter:description" content="Estudiante de DAM y tecnico informatico en formacion. Proyectos, aprendizaje y progreso real.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -108,12 +108,13 @@
     .nws{font-family:var(--m);font-size:.78rem;color:var(--t3);margin-top:.4rem}
     .gc{position:relative;overflow:hidden}.gc::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,var(--acd) 0%,transparent 60%);pointer-events:none}
 
-    /* STACK */
+    /* FORMACION */
     #stack{background:linear-gradient(to bottom,var(--bg) 0%,var(--bg2) 7%,var(--bg2) 93%,var(--bg) 100%)}
-    .skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.7rem;max-width:880px;width:100%}
-    .sk{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;padding:1.15rem .9rem;background:var(--bgc);border:1px solid var(--bd);border-radius:var(--r);font-size:.8rem;font-weight:600;color:var(--t2);transition:border-color .2s,background .2s,color .2s,transform .2s;min-height:88px;cursor:default;text-align:center}
-    .sk:hover{border-color:var(--bda);background:var(--bgh);color:var(--t);transform:translateY(-3px)}
-    .skd{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--m);font-size:.68rem;font-weight:700;flex-shrink:0}
+    .learn{max-width:880px;background:var(--bgc);border:1px solid var(--bd);border-radius:var(--rl);padding:1.8rem;display:grid;gap:1rem}
+    .learn strong{color:var(--t)}
+    .learn p{font-size:1rem;color:var(--t2);line-height:1.75}
+    .learn-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin-top:.25rem}
+    .learn-item{padding:.85rem 1rem;border:1px solid var(--bd);border-radius:10px;background:rgba(255,255,255,.025);font-family:var(--m);font-size:.78rem;color:var(--t2)}
 
     /* PROJECTS */
     .pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.1rem;max-width:1160px;width:100%;margin:0 auto}
@@ -172,7 +173,7 @@
       .ha{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:.75rem}.btn{justify-content:center;padding:.72rem .9rem}
       .bento{grid-template-columns:1fr}.bc{padding:1.25rem}.sg2{gap:1rem}.sn{font-size:1.85rem}
       .term{max-height:240px}.tb{min-height:175px;max-height:190px;overflow:hidden;padding:1rem;font-size:.72rem;line-height:1.7}
-      .skg{grid-template-columns:repeat(2,minmax(0,1fr))}.pg{grid-template-columns:1fr}.pj{padding:1.35rem}
+      .learn{padding:1.25rem}.learn-list{grid-template-columns:1fr}.pg{grid-template-columns:1fr}.pj{padding:1.35rem}
       .socs{display:grid;grid-template-columns:1fr 1fr}.soc{justify-content:center}.soc:last-child{grid-column:1/-1}
       .rv-l,.rv-r{transform:translateY(24px)}.rv-l.vs,.rv-r.vs{transform:translateY(0)}
     }
@@ -186,7 +187,7 @@
   <a href="#" class="nl" aria-label="zerozeid — inicio"><div class="nd" aria-hidden="true"></div>zerozeid</a>
   <ul class="nv" role="list">
     <li><a href="#about">Sobre mí</a></li>
-    <li><a href="#stack">Stack</a></li>
+    <li><a href="#stack">Formacion</a></li>
     <li><a href="#projects">Proyectos</a></li>
     <li><a href="#contact" class="nc">Contacto</a></li>
   </ul>
@@ -198,8 +199,8 @@
     <div class="hl">
       <div class="badge" aria-label="Disponible para proyectos"><span class="bd2" aria-hidden="true"></span>Disponible para proyectos</div>
       <h1>zerozeid</h1>
-      <p class="hs">Tecnico informatico · Automatizacion · Python</p>
-      <p class="hd">Construyo herramientas practicas para automatizar trabajo, documentar laboratorios tecnicos y convertir ideas en proyectos web ligeros, claros y faciles de mantener.</p>
+      <p class="hs">Estudiante de DAM · Tecnico informatico en formacion</p>
+      <p class="hd">Estoy construyendo mi base como desarrollador. Uso IA como apoyo para practicar, crear prototipos y documentar mi progreso sin vender experiencia que todavia estoy consolidando.</p>
       <div class="ha">
         <a href="#projects" class="btn bp">Ver proyectos <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="#contact" class="btn bo">Contactar</a>
@@ -220,12 +221,12 @@
     <p class="sl rv-l">01 — sobre mí</p>
     <div class="bento" role="list">
       <article class="bc s7 rv-l" role="listitem">
-        <p class="btext">Soy <strong>zerozeid</strong>, tecnico informatico y desarrollador en formacion afincado en <strong>Espana</strong>. Me centro en crear herramientas que resuelven problemas reales: automatizaciones, laboratorios de ciberseguridad, documentacion tecnica y aplicaciones web sencillas.<br><br>Actualmente profundizo en <strong>Python</strong>, desarrollo web y seguridad defensiva. Tambien comparto aprendizaje tecnico en el canal <strong>Cafe y Bytes</strong>.</p>
+        <p class="btext">Soy <strong>zerozeid</strong>, tecnico informatico y estudiante de <strong>DAM</strong> afincado en <strong>Espana</strong>. Este portfolio muestra mi proceso: proyectos guiados con IA, documentacion, pruebas y aprendizaje practico.<br><br>No me presento como experto. Estoy construyendo criterio, habitos de trabajo y una base tecnica solida para poder aportar de forma honesta cuando termine la formacion.</p>
       </article>
       <article class="bc s5 rv-r d1" role="listitem">
         <div class="sg2">
           <div><div class="sn" data-count="4" data-suffix="+">4<span>+</span></div><div class="slb">Repos publicos</div></div>
-          <div><div class="sn" data-count="10" data-suffix="+">10<span>+</span></div><div class="slb">Tecnologias</div></div>
+          <div><div class="sn">DAM</div><div class="slb">En curso</div></div>
           <div><div class="sn" data-count="1" data-suffix="">1</div><div class="slb">Canal YouTube</div></div>
           <div><div class="sn">∞</div><div class="slb">Ganas de aprender</div></div>
         </div>
@@ -241,19 +242,27 @@
       </article>
       <article class="bc s8 gc rv-r d3" role="listitem">
         <p class="nwl">Enfoque actual</p>
-        <p class="nwt">Python, seguridad y <span>automatizacion</span></p>
-        <p class="nws">Streamlit · Wazuh · Linux · HTML/CSS · Git</p>
+        <p class="nwt">Aprender, practicar y <span>documentar</span></p>
+        <p class="nws">DAM · IA como apoyo · proyectos progresivos</p>
       </article>
     </div>
   </section>
 
   <div class="sdiv" aria-hidden="true"><span class="sdiv-dot"></span></div>
 
-  <!-- STACK -->
+  <!-- FORMACION -->
   <section id="stack" aria-labelledby="sh">
-    <p class="sl rv-l">02 — stack</p>
-    <h2 class="st rv-l d1" id="sh">Tecnologías que uso</h2>
-    <div class="skg" id="skg" role="list" aria-label="Stack tecnológico"></div>
+    <p class="sl rv-l">02 — formacion</p>
+    <h2 class="st rv-l d1" id="sh">Tecnologias en progreso</h2>
+    <div class="learn rv d2" role="note" aria-label="Tecnologias en formacion">
+      <p><strong>Esta seccion se completara cuando acabe mis estudios de DAM.</strong> Ahora mismo prefiero ser claro: no quiero listar tecnologias como dominadas si todavia las estoy aprendiendo.</p>
+      <p>Trabajo con IA como apoyo para entender conceptos, crear prototipos y corregir errores, pero mi objetivo es consolidar fundamentos reales antes de presentarlos como competencias profesionales.</p>
+      <div class="learn-list" aria-label="Estado actual">
+        <span class="learn-item">DAM en curso</span>
+        <span class="learn-item">Proyectos guiados con IA</span>
+        <span class="learn-item">Stack pendiente de validar</span>
+      </div>
+    </div>
   </section>
 
   <div class="sdiv" aria-hidden="true"><span class="sdiv-dot"></span></div>
@@ -262,7 +271,7 @@
   <section id="projects" aria-labelledby="ph">
     <p class="sl rv-l">03 — proyectos</p>
     <h2 class="st rv-l d1" id="ph">Lo que he construido</h2>
-    <p class="sd rv d2">Repositorios publicos y proyectos propios que muestran trabajo real: aprendizaje estructurado, laboratorios, documentacion y desarrollo aplicado.</p>
+    <p class="sd rv d2">Repositorios publicos y ejercicios en construccion. Los muestro como evidencia de aprendizaje, no como prueba de dominio profesional cerrado.</p>
     <div class="pg" id="pg" role="list" aria-label="Proyectos"></div>
   </section>
 
@@ -273,7 +282,7 @@
     <div class="ci">
       <p class="sl rv-l">04 — contacto</p>
       <h2 class="st rv-l d1" id="ch">Hablemos</h2>
-      <p class="sd rv d2">Si quieres revisar un proyecto, colaborar o hablar de automatizacion, escribeme.</p>
+      <p class="sd rv d2">Si buscas una persona en formacion, honesta con su nivel y con ganas de aprender trabajando, escribeme.</p>
       <a href="mailto:zerozeid@duck.com" class="ce rv d3" aria-label="Enviar email a zerozeid@duck.com">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         zerozeid@duck.com
@@ -318,7 +327,7 @@
     '<span class="tp">❯</span> <span class="tc2">cat ~/.profile</span>',
     '<span class="ti">  nombre    zerozeid</span>',
     '<span class="ti">  rol       Tecnico informatico</span>',
-    '<span class="ti">  foco      Python · seguridad · web</span>',
+    '<span class="ti">  foco      DAM · proyectos · IA como apoyo</span>',
     '<span class="ti">  base      Espana</span>',
     '<span class="ti">  email     zerozeid@duck.com</span>',
     '<span class="ti">  github    github.com/zerozeid</span>',
@@ -360,11 +369,6 @@
   const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sn[data-count]').forEach(runCounter);cObs.unobserve(e.target);}});},{threshold:.4});
   const statsCard=document.querySelector('.bc.s5');
   if(statsCard)cObs.observe(statsCard);
-
-  // STACK
-  const sk=[{n:'Python',c:'#3776AB',b:'rgba(55,118,171,.15)'},{n:'Automation',c:'#f59e0b',b:'rgba(245,158,11,.12)'},{n:'Streamlit',c:'#ff4b4b',b:'rgba(255,75,75,.12)'},{n:'SQLite',c:'#6ba2c1',b:'rgba(107,162,193,.15)'},{n:'Selenium',c:'#43b02a',b:'rgba(67,176,42,.12)'},{n:'HTML',c:'#e34c26',b:'rgba(227,76,38,.12)'},{n:'CSS',c:'#264de4',b:'rgba(38,77,228,.12)'},{n:'JavaScript',c:'#f7df1e',b:'rgba(247,223,30,.1)'},{n:'Wazuh',c:'#22d3ee',b:'rgba(34,211,238,.12)'},{n:'Bash',c:'#4ade80',b:'rgba(74,222,128,.1)'},{n:'Git',c:'#f05032',b:'rgba(240,80,50,.12)'},{n:'Linux',c:'#fcc624',b:'rgba(252,198,36,.1)'}];
-  const sg=document.getElementById('skg');
-  sk.forEach((s,i)=>{const el=document.createElement('div');el.className='sk rv'+(i%3===1?' d1':i%3===2?' d2':'');el.setAttribute('role','listitem');el.innerHTML=`<div class="skd" style="background:${s.b};color:${s.c}">${s.n.slice(0,2)}</div><span>${s.n}</span>`;sg.appendChild(el);obs.observe(el);});
 
   // PROJECTS
   const pjs=[
