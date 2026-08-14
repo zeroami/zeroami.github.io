@@ -121,6 +121,11 @@
     .pj{background:var(--bgc);border:1px solid var(--bd);border-radius:var(--rl);padding:1.65rem;display:flex;flex-direction:column;gap:.9rem;transition:border-color .25s,background .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden}
     .pj::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--acd),transparent);opacity:0;transition:opacity .25s}
     .pj:hover{border-color:var(--bda);background:var(--bgh);transform:translateY(-3px);box-shadow:var(--sh),var(--gw)}.pj:hover::after{opacity:1}
+    .pimg{aspect-ratio:16/9;border:1px solid var(--bd);border-radius:14px;background:linear-gradient(135deg,rgba(129,140,248,.11),rgba(34,211,238,.06));display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+    .pimg img{width:100%;height:100%;object-fit:cover;display:block}
+    .pimg::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(7,7,15,.36));pointer-events:none}
+    .phold{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.45rem;color:var(--t2);font-family:var(--m);font-size:.75rem;text-align:center}
+    .phold span{width:34px;height:34px;border-radius:9px;border:1px solid var(--bda);background:var(--acd);display:flex;align-items:center;justify-content:center;color:var(--ac);font-weight:700}
     .pn{font-family:var(--m);font-size:.72rem;color:var(--t3)}
     .pt{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;color:var(--t)}
     .pd2{font-size:.9rem;color:var(--t2);line-height:1.68;flex:1}
@@ -271,7 +276,7 @@
   <section id="projects" aria-labelledby="ph">
     <p class="sl rv-l">03 — proyectos</p>
     <h2 class="st rv-l d1" id="ph">Lo que he construido</h2>
-    <p class="sd rv d2">Repositorios publicos y ejercicios en construccion. Los muestro como evidencia de aprendizaje, no como prueba de dominio profesional cerrado.</p>
+    <p class="sd rv d2">Proyectos en construccion y herramientas propias creadas con apoyo de IA. Las imagenes se anadiran cuando tenga seleccionado el material visual de cada uno.</p>
     <div class="pg" id="pg" role="list" aria-label="Proyectos"></div>
   </section>
 
@@ -334,7 +339,7 @@
     '<span class="tok">  ok        portfolio cargado</span>',
     '',
     '<span class="tp">❯</span> <span class="tc2">ls proyectos/</span>',
-    '<span class="tc2">  Cyber-Conquest/  Wazuh-SOC-lab/  Java-Mastery-Notes/</span>',
+    '<span class="tc2">  LandingInfo/  VideoTool/  MetaPromptExt/  EstudioApp/</span>',
     '',
     '<span class="tp">❯</span> <span class="tcm"># aprendiendo · construyendo · mejorando</span>'
   ];
@@ -372,14 +377,23 @@
 
   // PROJECTS
   const pjs=[
-    {num:'01',title:'Cyber-Conquest',desc:'Roadmap integral de ciberseguridad con aplicacion Python en Streamlit, laboratorios, cheatsheets y desafios para aprender de forma estructurada.',tags:[{l:'Python',c:'ta'},{l:'Streamlit',c:'tc3'},{l:'CTF',c:'tg'},{l:'Security',c:'tw'}],href:'https://github.com/zerozeid/Cyber-Conquest'},
-    {num:'02',title:'Wazuh SOC Lab',desc:'Documentacion y scripts para montar un laboratorio SOC con Wazuh en Ubuntu Server. Enfocado en instalacion, practica y aprendizaje defensivo.',tags:[{l:'Shell',c:'ta'},{l:'Wazuh',c:'tc3'},{l:'Linux',c:'tg'}],href:'https://github.com/zerozeid/Wazuh-SOC-lab'},
-    {num:'03',title:'Java Mastery Notes',desc:'Notas personales, esquemas visuales y material de estudio para dominar Java desde fundamentos hasta patrones mentales de codigo limpio.',tags:[{l:'Java',c:'ta'},{l:'Docs',c:'tc3'},{l:'Learning',c:'tg'}],href:'https://github.com/zerozeid/Java-Mastery-Notes'},
-    {num:'04',title:'Portfolio',desc:'Sitio personal estatico hecho a mano con HTML, CSS y JavaScript. Sin frameworks, rapido de publicar y facil de mantener en GitHub Pages.',tags:[{l:'HTML',c:'ta'},{l:'CSS',c:'tc3'},{l:'JavaScript',c:'tg'}],href:'https://github.com/zerozeid/zeroami.github.io'}
+    {num:'01',title:'Landing Page Generator Info',desc:'Landing page informativa para explicar un servicio de generacion de landing pages. Presenta la propuesta, el proceso y el tipo de resultado que se puede pedir.',tags:[{l:'Landing page',c:'ta'},{l:'Vercel',c:'tc3'},{l:'Informacion',c:'tg'}],href:'https://zerozeidlandig.vercel.app/',linkText:'Ver landing'},
+    {num:'02',title:'Automatizacion de videos',desc:'Herramienta propia para crear videos de forma automatizada: solo indico el titulo y la duracion, y el sistema prepara el flujo de generacion del contenido.',tags:[{l:'Automatizacion',c:'ta'},{l:'Video',c:'tc3'},{l:'IA como apoyo',c:'tg'}]},
+    {num:'03',title:'Extension para Meta.ai',desc:'Extension creada para automatizar el envio de prompts en Meta.ai. Permite preparar prompts y ejecutarlos de forma automatica para ahorrar trabajo repetitivo.',tags:[{l:'Extension',c:'ta'},{l:'Meta.ai',c:'tc3'},{l:'Prompts',c:'tg'}]},
+    {num:'04',title:'Aplicacion de estudio',desc:'Aplicacion orientada a organizar el estudio y avanzar con mas estructura durante la formacion. Pensada para acompanarme mientras completo DAM.',tags:[{l:'Estudio',c:'ta'},{l:'DAM',c:'tc3'},{l:'En progreso',c:'tw'}]}
   ];
   const pg=document.getElementById('pg');
-  const ghI=`<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>`;
-  pjs.forEach((p,i)=>{const el=document.createElement('article');el.className='pj rv'+(i===1?' d1':i===2?' d2':i===3?' d3':'');el.setAttribute('role','listitem');el.innerHTML=`<span class="pn">${p.num}</span><h3 class="pt">${p.title}</h3><p class="pd2">${p.desc}</p><div class="tags">${p.tags.map(t=>`<span class="tag ${t.c}">${t.l}</span>`).join('')}</div><div class="pf"><a href="${p.href}" target="_blank" rel="noopener noreferrer" class="pl" aria-label="Ver repositorio ${p.title} en GitHub">${ghI} Ver repositorio</a></div>`;pg.appendChild(el);obs.observe(el);});
+  const linkI=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>`;
+  pjs.forEach((p,i)=>{
+    const el=document.createElement('article');
+    el.className='pj rv'+(i===1?' d1':i===2?' d2':i===3?' d3':'');
+    el.setAttribute('role','listitem');
+    const media=p.img?`<div class="pimg"><img src="${p.img}" alt="Imagen de ${p.title}"></div>`:`<div class="pimg" aria-label="Imagen pendiente para ${p.title}"><div class="phold"><span>${p.num}</span>Imagen pendiente</div></div>`;
+    const footer=p.href?`<div class="pf"><a href="${p.href}" target="_blank" rel="noopener noreferrer" class="pl" aria-label="${p.linkText||'Ver proyecto'}: ${p.title}">${linkI} ${p.linkText||'Ver proyecto'}</a></div>`:`<div class="pf"><span class="pl" aria-label="Proyecto pendiente de enlace">${linkI} Imagen y enlace pendientes</span></div>`;
+    el.innerHTML=`${media}<span class="pn">${p.num}</span><h3 class="pt">${p.title}</h3><p class="pd2">${p.desc}</p><div class="tags">${p.tags.map(t=>`<span class="tag ${t.c}">${t.l}</span>`).join('')}</div>${footer}`;
+    pg.appendChild(el);
+    obs.observe(el);
+  });
 </script>
 </body>
 </html>
